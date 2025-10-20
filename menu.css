@@ -2,7 +2,7 @@
   --bg: #f7f7f9;
   --card: #ffffff;
   --muted: #6b7280;
-  --accent: #e11d48; /* red accent */
+  --accent: #e11d48;
   --accent-2: #0ea5e9;
   --radius: 12px;
   --container: 420px;
@@ -16,7 +16,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: auto; /* بدلاً من 100% */
+  height: auto;
 }
 
 body {
@@ -28,7 +28,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 18px 0;
-  min-height: 100vh; /* لو حابب يبقى على الأقل بطول الشاشة */
+  min-height: 100vh;
 }
 
 /* page column */
@@ -57,30 +57,12 @@ body {
   align-items: center;
   gap: 8px;
 }
-.brand {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
 .brand img {
   width: 44px;
   height: 44px;
   border-radius: 8px;
   object-fit: cover;
 }
-.nav-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.nav-actions button {
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  font-weight: 700;
-  color: var(--muted);
-}
-
 .searchbar {
   flex: 1;
   margin: 0 8px;
@@ -100,25 +82,27 @@ body {
   width: 100%;
   direction: rtl;
 }
-
-/* banner */
-.banner {
-  width: 100%;
-  height: 220px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: center/cover no-repeat;
-  border: 1px solid rgba(15, 23, 42, 0.03);
-  box-shadow: var(--shadow);
+.nav-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.nav-actions button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--muted);
 }
 
-/* biz info */
+/* biz */
 .biz {
   background: var(--card);
   padding: 10px;
   border-radius: 12px;
   border: 1px solid rgba(15, 23, 42, 0.04);
   display: flex;
+  justify-content: space-between;
   gap: 12px;
   align-items: center;
 }
@@ -130,9 +114,9 @@ body {
 }
 .biz .logo img {
   width: 100%;
-  border-radius: 50%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 .biz .meta h2 {
   margin: 0;
@@ -142,6 +126,61 @@ body {
   margin: 6px 0 0 0;
   color: var(--muted);
   font-size: 13px;
+}
+
+/* status button (single definition) */
+#status-btn {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 6px;
+  padding: 5px 18px;
+  cursor: pointer;
+}
+#status-btn:hover {
+  background: #fff;
+  color: #000;
+}
+#follow-btn {
+  padding: 4px;
+  border-radius: 7px;
+  margin-top: 5px;
+  border: 1px solid;
+}
+/* ticker (fixed bottom) -- fixed syntax for borders */
+.custom-ticker-wrap {
+  background: #e3c7c4;
+  overflow: hidden;
+  height: 45px;
+  color: #000;
+  border-top: 2px solid #af8681;
+  border-bottom: 2px solid #af8681;
+  z-index: 10;
+  direction: rtl;
+}
+.custom-ticker {
+  display: inline-block;
+  white-space: nowrap;
+  animation: moveTicker 25s linear infinite;
+  will-change: transform;
+}
+.custom-ticker__item {
+  display: inline-block;
+  padding: 0 2rem;
+  color: #000;
+  font-size: 18px;
+  line-height: 45px;
+}
+@keyframes moveTicker {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.custom-ticker-wrap:hover .custom-ticker {
+  animation-play-state: paused;
 }
 
 /* category bar sticky */
@@ -159,7 +198,6 @@ body {
   display: flex;
   gap: 8px;
   overflow: auto;
-  background: transparent;
   padding: 6px;
   border-radius: 12px;
 }
@@ -176,7 +214,6 @@ body {
 }
 .catbtn.active {
   background: #c45c50fb;
-  border-color: #2e1838;
   color: #fff;
   font-size: 18px;
 }
@@ -199,7 +236,6 @@ body {
   font-weight: 700;
   margin-bottom: 10px;
 }
-
 .item {
   display: flex;
   align-items: center;
@@ -254,7 +290,7 @@ body {
   font-weight: 700;
 }
 
-/* cart FAB */
+/* cart FAB & drawer */
 .cart-fab {
   position: fixed;
   left: 18px;
@@ -268,8 +304,6 @@ body {
   z-index: 80;
   cursor: pointer;
 }
-
-/* cart drawer */
 .cart-drawer {
   position: fixed;
   top: 0;
@@ -315,15 +349,7 @@ body {
   cursor: pointer;
 }
 
-.total-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
-  color: var(--muted);
-}
-
-/* modal (hours) */
+/* modal (hours & contact) */
 .modal-back {
   position: fixed;
   inset: 0;
@@ -343,6 +369,7 @@ body {
   border-radius: 12px;
   padding: 14px;
   color: #0f172a;
+  position: relative;
 }
 .modal h3 {
   margin: 0 0 12px 0;
@@ -363,6 +390,7 @@ body {
   cursor: pointer;
 }
 
+/* hours list */
 .hours-list {
   display: flex;
   flex-direction: column;
@@ -387,7 +415,64 @@ body {
   color: #059669;
 }
 
-/* footer */
+/* small UI for schedule modal used by status button */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+#schedule-modal {
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 18px 20px;
+  width: 340px;
+  max-width: 92%;
+  text-align: right;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: none;
+}
+#schedule-modal h3 {
+  margin: 0 0 10px;
+  border-bottom: 1px solid #000;
+  padding-bottom: 6px;
+  font-size: 18px;
+}
+#schedule-modal ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  text-align: right;
+}
+#schedule-modal ul li {
+  padding: 6px 0;
+  border-bottom: 1px dashed #ddd;
+  font-size: 15px;
+  line-height: 1.6;
+}
+#today-status {
+  margin-top: 10px;
+  font-weight: 700;
+}
+#close-btn {
+  margin-top: 12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* utility */
+.hidden {
+  display: none !important;
+}
 .footer {
   background: #fff;
   padding: 12px;
@@ -406,55 +491,23 @@ body {
     width: 420px;
   }
 }
-.custom-ticker-wrap {
-  border: 2px 0 2px 0 solid #cd0303;
-  background: #e3c7c4;
-  overflow: hidden;
-  height: 45px;
-  color: #000;
-  border-top: 2px solid #af8681; /* ✅ اللون والسمك */
-  border-bottom: 2px solid #af8681; /* ✅ نفس اللون للتماسك */
-  z-index: 99999;
-  direction: rtl; /* للحفاظ على الاتجاه العربي */
+.swiper {
+  width: 100%;
+  height: auto;
 }
 
-.custom-ticker {
-  display: inline-block;
-  white-space: nowrap;
-  animation: moveTicker 25s linear infinite;
-}
-
-.custom-ticker__item {
-  display: inline-block;
-  padding: 0 2rem;
-  color: #000;
+.swiper-slide {
+  text-align: center;
   font-size: 18px;
-  line-height: 45px;
+  background: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes moveTicker {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* توقف عند المرور بالماوس */
-.custom-ticker-wrap:hover .custom-ticker {
-  animation-play-state: paused;
-}
-.order-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.order-content {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.order-content:hover {
-  transform: scale(1.05);
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

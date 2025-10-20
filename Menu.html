@@ -8,6 +8,13 @@
     <!-- Cairo font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="menu.css" />
     <style></style>
@@ -39,14 +46,49 @@
       </header>
 
       <!-- banner -->
-      <div class="banner" id="banner" style="background-image: url('https://picsum.photos/900/500?random=21')"></div>
+      <!-- Swiper -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="images/1.webp" alt="" /></div>
+          <div class="swiper-slide"><img src="images/2.webp" alt="" /></div>
+          <div class="swiper-slide"><img src="images/3.webp" alt="" /></div>
+          <div class="swiper-slide"><img src="images/4.webp" alt="" /></div>
+        </div>
+      </div>
 
       <!-- business card -->
       <div class="biz" role="region" aria-label="معلومات الفرع">
-        <div class="logo"><img src="images/1758024242433_793.webp" alt="logo" /></div>
-        <div class="meta">
-          <h2 id="bizTitle">ألكسيس بيتزا</h2>
-          <p id="bizSub">فرع: مدينة نصر - شارع النصر</p>
+        <div class="winner">
+          <div class="logo"><img src="images/1758024242433_793.webp" alt="logo" /></div>
+          <div class="meta">
+            <h2 id="bizTitle">ألكسيس بيتزا</h2>
+            <p id="bizSub">فرع: مدينة نصر - شارع النصر</p>
+          </div>
+        </div>
+        <div>
+          <button id="status-btn">مغلق</button>
+
+          <div id="overlay" class="hidden" aria-hidden="true">
+            <div id="schedule-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+              <h3 id="modalTitle">مواعيد العمل</h3>
+              <ul>
+                <li>الأحد: 10 ص - 12 ص</li>
+                <li>الإثنين: 10 ص - 12 ص</li>
+                <li>الثلاثاء: 10 ص - 12 ص</li>
+                <li>الأربعاء: 10 ص - 12 ص</li>
+                <li>الخميس: 10 ص - 12 ص</li>
+                <li>الجمعة: 2 م - 1 ص</li>
+                <li>السبت: 10 ص - 12 ص</li>
+              </ul>
+              <p id="today-status"></p>
+              <button id="close-btn" type="button">إغلاق</button>
+            </div>
+          </div>
+
+          <div class="h-0.5"></div>
+          <div>
+            <button id="follow-btn">تتبع الطلب</button>
+          </div>
         </div>
       </div>
       <!-- minimal HTML (keep your existing .ticker and items) -->
@@ -117,7 +159,14 @@
         </div>
       </div>
     </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="menu.js"></script>
   </body>
 </html>
