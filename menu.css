@@ -445,3 +445,16 @@ body {
 .custom-ticker-wrap:hover .custom-ticker {
   animation-play-state: paused;
 }
+.order-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.order-content {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.order-content:hover {
+  transform: scale(1.05);
+}
