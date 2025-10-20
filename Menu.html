@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>قائمة الطعام - فرع</title>
+
+    <!-- Cairo font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="menu.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="page" id="page">
+      <!-- NAVBAR -->
+      <header class="navbar" role="banner">
+        <div class="nav-left">
+          <div class="brand">
+            <img src="https://picsum.photos/seed/logo/120/120" alt="logo" />
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <strong id="bizName">ألكسيس بيتزا</strong>
+            <span id="bizAddr" style="color: var(--muted); font-size: 13px">مدينة نصر - شارع تجريبي</span>
+          </div>
+        </div>
+
+        <div class="searchbar" role="search">
+          <i class="fa fa-magnifying-glass" style="color: var(--muted)"></i>
+          <input id="searchInput" placeholder="ابحث عن صنف أو وصف..." aria-label="ابحث" />
+        </div>
+
+        <div class="nav-actions">
+          <button id="btnHome">الرئيسية</button>
+          <button id="btnContact">تواصل معنا</button>
+          <button id="btnHours">مواعيد العمل</button>
+        </div>
+      </header>
+
+      <!-- banner -->
+      <div class="banner" id="banner" style="background-image: url('https://picsum.photos/900/500?random=21')"></div>
+
+      <!-- business card -->
+      <div class="biz" role="region" aria-label="معلومات الفرع">
+        <div class="logo"><img src="https://picsum.photos/200/200?random=22" alt="logo" /></div>
+        <div class="meta">
+          <h2 id="bizTitle">ألكسيس بيتزا</h2>
+          <p id="bizSub">فرع: مدينة نصر - شارع النصر</p>
+        </div>
+      </div>
+      <!-- minimal HTML (keep your existing .ticker and items) -->
+      <div class="custom-ticker-wrap">
+        <div class="custom-ticker">
+          <div class="custom-ticker__item">🍔 عرض خاص اليوم: برجر بسعر 50 جنيه فقط!</div>
+          <div class="custom-ticker__item">🥤 احصل على مشروب مجاني مع كل وجبة كومبو!</div>
+          <div class="custom-ticker__item">🚗 التوصيل متاح في جميع مناطق مدينة نصر.</div>
+          <div class="custom-ticker__item">📞 اطلب الآن: +201009105861</div>
+        </div>
+      </div>
+      <!-- category bar (sticky) -->
+      <div class="catbar-wrap">
+        <div class="catbar" id="catbar" role="navigation" aria-label="فئات القائمة"></div>
+      </div>
+
+      <!-- main menu content -->
+      <main id="menuContent" style="display: flex; flex-direction: column; gap: 8px">
+        <!-- sections injected by JS -->
+      </main>
+
+      <!-- footer -->
+      <footer class="footer">© جميع الحقوق محفوظة - ألكسيس بيتزا · تواصل: <span id="bizPhone">+201009105861</span></footer>
+    </div>
+
+    <!-- cart FAB -->
+    <button class="cart-fab" id="openCartBtn"><i class="fa fa-basket-shopping"></i> سلة (<span id="cartCount">0</span>)</button>
+
+    <!-- cart drawer -->
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+      <h3>سلة الطلب</h3>
+      <div id="cartList" style="max-height: 60vh; overflow: auto; margin-top: 8px"></div>
+      <div class="total-row"><strong>الإجمالي</strong><strong id="cartTotal">0 ج.م</strong></div>
+      <button class="checkout" id="checkoutBtn">تأكيد الطلب</button>
+      <button
+        id="closeCart"
+        style="margin-top: 8px; background: transparent; border: 1px solid rgba(15, 23, 42, 0.04); padding: 8px; border-radius: 8px; cursor: pointer"
+      >
+        إغلاق
+      </button>
+    </aside>
+
+    <!-- modal: hours -->
+    <div class="modal-back" id="modalBack" role="dialog" aria-hidden="true" aria-modal="true">
+      <div class="modal" role="document">
+        <button class="close" id="closeModal"><i class="fa fa-times"></i></button>
+        <h3>مواعيد العمل</h3>
+        <div style="margin-top: 10px" class="hours-list" id="hoursList">
+          <!-- hours items injected -->
+        </div>
+      </div>
+    </div>
+
+    <!-- modal: contact (simple) -->
+    <div class="modal-back" id="contactBack" role="dialog" aria-hidden="true" aria-modal="true" style="display: none">
+      <div class="modal" role="document">
+        <button class="close" id="closeContact"><i class="fa fa-times"></i></button>
+        <h3>تواصل معنا</h3>
+        <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px">
+          <input id="cName" placeholder="الاسم" style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06)" />
+          <input id="cPhone" placeholder="رقم الهاتف" style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06)" />
+          <textarea
+            id="cMsg"
+            placeholder="رسالتك"
+            style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06); min-height: 100px"
+          ></textarea>
+          <button id="sendContact" class="checkout">إرسال</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="menu.js"></script>
+  </body>
+</html>

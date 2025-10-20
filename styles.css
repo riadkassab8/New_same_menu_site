@@ -1,321 +1,353 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Cairo', sans-serif;
-    background: #fff;
-    color: #333;
+  font-family: "Cairo", sans-serif;
+  background: #fff;
+  color: #333;
 }
 
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  max-width: 618px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.btn {
+  border: 0 solid #000;
+  cursor: pointer;
+  width: 400px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background: rgb(253 233 231);
+  justify-content: center;
+  color: #e74c3c;
+  outline: none;
 }
 
 .hero-section {
-    background: #fff;
-    text-align: center;
-    padding: 40px 20px;
+  background: #fff;
+  text-align: center;
+  padding: 40px 20px;
 }
 
 .hero-section .logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-section h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #000;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #000;
 }
 
 .hero-section h2 {
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 25px;
-    color: #666;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 25px;
+  color: #666;
 }
 
 .whatsapp-link {
-    display: block;
-    background: #25D366;
-    color: #fff;
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-    margin: 0 auto 20px auto;
-    width: fit-content;
+  display: block;
+  background: #25d366;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin: 0 auto 20px auto;
+  width: fit-content;
 }
 
 .whatsapp-link:hover {
-    background: #128C7E;
+  background: #128c7e;
 }
 
 .slider-section {
-    background: #fff;
-    padding-bottom: 20px;
+  background: #fff;
+  padding-bottom: 20px;
 }
 
 .swiper {
-    width: 100%;
-    height: 500px;
+  width: 100%;
+  height: 500px;
 }
 
 .swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-    color: #fff;
+  color: #fff;
 }
 
 .swiper-pagination-bullet-active {
-    background: #fff;
+  background: #fff;
 }
 
 .click-icon {
-    text-align: center;
-    padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .click-icon img {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .menu-section {
-    background: #fff;
-    padding: 50px 20px;
+  background: #fff;
+  margin-bottom: 20px;
 }
 
 .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #000;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #000;
 }
 
 .menuSwiper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 50px;
 }
 
 .menuSwiper .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu-item {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.3s;
-    width: 100%;
-    max-width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s;
+  width: 100%;
+  max-width: 300px;
 }
 
 .menu-item:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .menu-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .menu-item h3 {
-    padding: 20px;
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #000;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
 }
 
 .menuSwiper .swiper-button-next,
 .menuSwiper .swiper-button-prev {
-    color: #000;
+  color: #000;
 }
 
 .menuSwiper .swiper-pagination-bullet-active {
-    background: #000;
+  background: #000;
 }
 
 .order-section {
-    position: relative;
+  position: relative;
 }
 
 .order-banner {
-    position: relative;
-    height: 400px;
+  position: relative;
+  height: 400px;
 }
 
 .order-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .order-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
 }
 
 .click-gif {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
 }
 
 .order-content h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .contact-section {
-    background: #fff;
-    padding: 50px 20px;
-    text-align: center;
+  background: rgb(3 7 18);
+  color: #fff;
+  padding: 50px 20px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .contact-section .logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
 }
 
 .contact-section h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #000;
+  font-size: 2rem;
+
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
 }
 
 .contact-section h2 {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #666;
-    margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
 .contact-section .subtitle {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .contact-section hr {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 30px auto;
-    max-width: 800px;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 30px auto;
+  max-width: 800px;
 }
 
 .contact-section h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #000;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
 }
 
 .branch {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #000;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
 }
 
 .contact-info {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: right;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: right;
 }
 
 .contact-info .label {
-    font-weight: 600;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    color: #666;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: #ffff;
 }
 
 .contact-info a {
-    display: block;
-    color: #000;
-    text-decoration: none;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
 }
 
 .contact-info a:hover {
-    color: #25D366;
+  color: #25d366;
 }
 
 .contact-info p {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
 }
 
 .map-link {
-    color: #25D366 !important;
-    text-decoration: underline;
-}
-
-footer {
-    background: #fff;
-    padding: 30px 20px;
-    text-align: center;
-    color: #666;
-}
-
-footer a {
-    color: #000;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-footer a:hover {
-    text-decoration: underline;
+  color: #25d366 !important;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
-    .hero-section h1 {
-        font-size: 2rem;
-    }
-    
-    .swiper {
-        height: 350px;
-    }
-    
-    .menu-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .order-content h2 {
-        font-size: 2rem;
-    }
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .swiper {
+    height: 350px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-content h2 {
+    font-size: 2rem;
+  }
+}
+.phone {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+}
+.phone-input {
+  width: 100%;
+  height: 50px;
+  background-color: #1c2430;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  text-align: right; /* <<< align text to the right */
+  padding-right: 15px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  outline: none;
+}
+.phone2 {
+  background: rgb(20 83 45 / 30%);
+}
+.fa-solid {
+  --fa-style: 900;
+  position: relative;
+  top: 8px;
+  right: 5px;
 }
