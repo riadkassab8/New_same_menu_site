@@ -7,7 +7,7 @@
 body {
     font-family: 'Cairo', sans-serif;
     direction: rtl;
-    background: #f8f9fa;
+    background: #fff;
     min-height: 100vh;
 }
 
@@ -138,7 +138,7 @@ body {
 
 .menu-section {
     padding: 50px 20px;
-    background: #f8f9fa;
+    background: #fff;
 }
 
 .section-title {
@@ -346,7 +346,7 @@ body {
 
 .footer {
     padding: 25px 20px;
-    background: #f8f9fa;
+    background: #fff;
     text-align: center;
 }
 
