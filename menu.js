@@ -579,3 +579,4 @@ closeHours.addEventListener("click", () => hoursModal.classList.remove("show"));
 hoursModal.addEventListener("click", (e) => {
   if (e.target === hoursModal) hoursModal.classList.remove("show");
 });
+// search
