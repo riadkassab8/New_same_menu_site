@@ -15,33 +15,31 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="menu.css" />
     <style></style>
   </head>
   <body>
     <div class="page" id="page">
-      <!-- NAVBAR -->
-      <header class="navbar" role="banner">
+      <header class="navbar">
         <div class="nav-left">
-          <div class="brand">
-            <img src="images/1758024242433_793.webp" alt="logo" />
-          </div>
-          <div style="display: flex; flex-direction: column">
-            <strong id="bizName">ألكسيس بيتزا</strong>
-            <span id="bizAddr" style="color: var(--muted); font-size: 13px">مدينة نصر - شارع تجريبي</span>
-          </div>
+          <i class="fa fa-magnifying-glass"></i>
+          <i class="fa fa-share-nodes"></i>
         </div>
 
-        <div class="searchbar" role="search">
-          <i class="fa fa-magnifying-glass" style="color: var(--muted)"></i>
-          <input id="searchInput" placeholder="ابحث عن صنف أو وصف..." aria-label="ابحث" />
+        <div class="nav-right">
+          <button class="delivery-btn">
+            <i class="fa fa-motorcycle"></i>
+          </button>
+          <button class="menu-btn" id="menuToggle">
+            <i class="fa fa-bars"></i>
+          </button>
         </div>
 
-        <div class="nav-actions">
-          <button id="btnHome">الرئيسية</button>
-          <button id="btnContact">تواصل معنا</button>
-          <button id="btnHours">مواعيد العمل</button>
+        <div class="dropdown" id="dropdownMenu">
+          <button>الرئيسية</button>
+          <button>تواصل معنا</button>
+          <button>مواعيد العمل</button>
         </div>
       </header>
 

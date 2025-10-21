@@ -37,6 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
       { id: 5001, cat: "dessert", title: "تشيز كيك", desc: "تشيز كيك بالفرن", price: 85, img: "https://picsum.photos/seed/des1/160/120" },
       { id: 6001, cat: "kabab", title: "كباب عربي", desc: "كباب بلدي مع أرز", price: 160, img: "https://picsum.photos/seed/k1/160/120" },
       { id: 6002, cat: "kabab", title: "كفتة مشوية", desc: "كفتة مشوية مع صوص", price: 140, img: "https://picsum.photos/seed/k2/160/120" },
+      { id: 6001, cat: "kabab", title: "كباب عربي", desc: "كباب بلدي مع أرز", price: 160, img: "https://picsum.photos/seed/k1/160/120" },
+      { id: 6002, cat: "kabab", title: "كفتة مشوية", desc: "كفتة مشوية مع صوص", price: 140, img: "https://picsum.photos/seed/k2/160/120" },
+      { id: 6001, cat: "kabab", title: "كباب عربي", desc: "كباب بلدي مع أرز", price: 160, img: "https://picsum.photos/seed/k1/160/120" },
+      { id: 6002, cat: "kabab", title: "كفتة مشوية", desc: "كفتة مشوية مع صوص", price: 140, img: "https://picsum.photos/seed/k2/160/120" },
     ],
     hours: [
       { day: "السبت", state: "مغلق", times: "" },
@@ -485,3 +489,19 @@ var swiper = new Swiper(".mySwiper", {
     prevEl: ".swiper-button-prev",
   },
 });
+//
+const menuBtn = document.getElementById("menuToggle");
+const dropdown = document.getElementById("dropdownMenu");
+
+menuBtn.addEventListener("click", () => {
+  dropdown.classList.toggle("active");
+});
+
+// يغلق القائمة لما تضغط في أي مكان خارجها
+document.addEventListener("click", (e) => {
+  if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+    dropdown.classList.remove("active");
+  }
+});
+
+// hours
