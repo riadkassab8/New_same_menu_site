@@ -48,7 +48,7 @@ body {
   border-bottom: 1px solid #ddd;
   padding: 8px 16px;
   position: relative;
-  z-index: 10;
+  z-index: 99;
 }
 
 .nav-left {
@@ -393,41 +393,54 @@ body {
 .modal-back {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 120;
+  z-index: 999;
+  backdrop-filter: blur(3px);
+  transition: opacity 0.3s ease;
 }
-.modal-back.open {
+
+.modal-back.show {
   display: flex;
+  opacity: 1;
 }
+
 .modal {
-  width: 92%;
-  max-width: 420px;
   background: #fff;
   border-radius: 12px;
-  padding: 14px;
-  color: #0f172a;
+  padding: 20px;
+  width: min(90%, 420px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   position: relative;
+  animation: fadeIn 0.3s ease;
 }
-.modal h3 {
-  margin: 0 0 12px 0;
-  text-align: center;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .modal .close {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  top: 10px;
+  left: 10px;
+  border: none;
   background: #fff;
-  border: 0;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  width: 34px;
-  height: 34px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
 /* hours list */
@@ -552,3 +565,178 @@ body {
   object-fit: cover;
 }
 /* hours  */
+:root {
+  --bg: #f8f8fa;
+  --card: #fff;
+  --muted: #6b7280;
+  --accent: #e11d48;
+  --success: #16a34a;
+}
+
+/* 🔹 Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.nav-left i,
+.nav-right i {
+  font-size: 20px;
+  color: #111;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-btn,
+.delivery-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.delivery-btn i {
+  color: white;
+  background-color: #ef4444;
+  border-radius: 50%;
+  padding: 8px;
+}
+/* 🔹 Dropdown Menu - Fixed Center Inside Navbar */
+.dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%; /* يبدأ تحت الـ navbar */
+  right: 50%;
+  transform: translateX(50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  width: 100%;
+  z-index: 100;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dropdown.show {
+  display: flex;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.dropdown button {
+  padding: 10px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  text-align: start;
+}
+
+.dropdown button:last-child {
+  border-bottom: none;
+}
+
+/* 🔹 Modal */
+.hours-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  backdrop-filter: blur(3px);
+}
+
+.hours-overlay.show {
+  display: flex;
+}
+
+.hours-box {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px;
+  width: min(90%, 420px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
+  background: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hours-box h2 {
+  text-align: center;
+  font-size: 20px;
+  margin: 0 0 15px;
+}
+
+.hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hours-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #fafafa;
+}
+
+.hours-item.closed {
+  background: #fff5f5;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.hours-item.today {
+  background: #ecfdf5;
+  color: var(--success);
+  font-weight: 700;
+}
+svg {
+  margin-left: 10px;
+  color: #c45c50fb;
+}

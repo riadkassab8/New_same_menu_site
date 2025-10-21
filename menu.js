@@ -505,3 +505,63 @@ document.addEventListener("click", (e) => {
 });
 
 // hours
+// 🔹 Collapsed menu toggle
+const menuToggle = document.getElementById("menuToggle");
+const dropdownMenu = document.getElementById("dropdownMenu");
+
+menuToggle.addEventListener("click", () => {
+  dropdownMenu.classList.toggle("show");
+});
+
+// 🔹 Working hours modal
+const hoursData = [
+  { day: "السبت", open: null, close: null },
+  { day: "الأحد", open: "11 ص", close: "11 م" },
+  { day: "الإثنين", open: "11 ص", close: "11 م" },
+  { day: "الثلاثاء", open: "11 ص", close: "11 م" },
+  { day: "الأربعاء", open: "11 ص", close: "11 م" },
+  { day: "الخميس", open: "11 ص", close: "11 م" },
+  { day: "الجمعة", open: null, close: null },
+];
+
+const btnHours = document.getElementById("btnHours");
+const hoursModal = document.getElementById("hoursModal");
+const closeHours = document.getElementById("closeHours");
+const hoursList = document.getElementById("hoursList");
+
+btnHours.addEventListener("click", () => {
+  dropdownMenu.classList.remove("show"); // يغلق القائمة أولاً
+  hoursList.innerHTML = "";
+  const today = new Date().getDay(); // الأحد = 0
+
+  hoursData.forEach((h, i) => {
+    const li = document.createElement("li");
+    li.classList.add("hours-item");
+
+    const d = document.createElement("span");
+    d.textContent = h.day;
+    const t = document.createElement("span");
+
+    if (!h.open) {
+      t.textContent = "مغلق";
+      li.classList.add("closed");
+    } else {
+      t.textContent = `من ${h.open} إلى ${h.close}`;
+    }
+
+    if (i === today) {
+      li.classList.add("today");
+    }
+
+    li.appendChild(d);
+    li.appendChild(t);
+    hoursList.appendChild(li);
+  });
+
+  hoursModal.classList.add("show");
+});
+
+closeHours.addEventListener("click", () => hoursModal.classList.remove("show"));
+hoursModal.addEventListener("click", (e) => {
+  if (e.target === hoursModal) hoursModal.classList.remove("show");
+});
