@@ -754,4 +754,13 @@ svg {
   margin-left: 10px;
   color: #c45c50fb;
 }
+.checkout {
+  border-radius: 9px;
+  padding: 6px;
+  background: #16a34a52;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
 /* search */
