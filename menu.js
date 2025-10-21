@@ -329,76 +329,90 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*************** Small status modal (center overlay) ***************/
-  // compute open/closed from DATA.hours (attempt mapping)
-  function computeOpenStateFromData() {
-    // map DATA.hours index to JS getDay (0 Sunday ... 6 Saturday)
-    // DATA.hours is [Sat, Sun, Mon, Tue, Wed, Thu, Fri] in your data above.
-    // We'll build a simple schedule object from DATA.hours if possible
-    const schedule = {};
-    // find mapping: build map from day name to index
-    const dayNameToIndex = { الأحد: 0, الإثنين: 1, الثلاثاء: 2, الأربعاء: 3, الخميس: 4, الجمعة: 5, السبت: 6 };
-    DATA.hours.forEach((h) => {
-      const idx = dayNameToIndex[h.day];
-      if (typeof idx === "number") {
-        // try parse times "من 11 ص الى 11 م" -> fallback simple hours
-        let open = null,
-          close = null;
-        if (h.times && h.times.includes("من")) {
-          // crude parse: look for first number occurrences
-          const nums = h.times.match(/(\d{1,2})/g);
-          if (nums && nums.length >= 2) {
-            open = parseInt(nums[0], 10);
-            close = parseInt(nums[1], 10);
-            // assume pm if "م" present for second
-            if (h.times.includes("م") && close < open) close += 12;
-          }
-        }
-        schedule[idx] = { open: open !== null ? open : 10, close: close !== null ? close : 24, state: h.state };
-      }
-    });
-    return schedule;
-  }
+  // بيانات مواعيد العمل
+  const workingHours = [
+    { day: "الأحد", open: "12:00 م", close: "12:00 ص" },
+    { day: "الاثنين", open: "12:00 م", close: "12:00 ص" },
+    { day: "الثلاثاء", open: "12:00 م", close: "12:00 ص" },
+    { day: "الأربعاء", open: "12:00 م", close: "12:00 ص" },
+    { day: "الخميس", open: "12:00 م", close: "1:00 ص" },
+    { day: "الجمعة", open: "1:00 م", close: "1:00 ص" },
+    { day: "السبت", open: "12:00 م", close: "12:00 ص" },
+  ];
 
-  const scheduleFromData = computeOpenStateFromData();
-  const now = new Date();
-  const jsDay = now.getDay(); // 0 = Sunday
-  const jsHour = now.getHours();
+  // عناصر الزر والمودال
+  const statusBtn = document.getElementById("status-btn");
+  const statusBack = document.getElementById("statusBack");
+  const closeStatus = document.getElementById("closeStatus");
+  const statusList = document.getElementById("statusList");
 
-  function isOpenNow() {
-    const today = scheduleFromData[jsDay];
-    if (!today) return false;
-    // handle overnight close > 24 not present here — use simple check
-    return jsHour >= today.open && jsHour < (today.close || 24) && today.state !== "مغلق";
-  }
+  // الحصول على اليوم الحالي
+  const todayIndex = new Date().getDay(); // الأحد=0
 
-  const openNow = isOpenNow();
-  if (btnStatus) {
-    btnStatus.textContent = openNow ? "مفتوح الآن" : "مغلق";
-    btnStatus.style.backgroundColor = openNow ? "#000" : "#fff";
-    btnStatus.style.color = openNow ? "#fff" : "#000";
-    btnStatus.style.border = "1px solid #000";
-    btnStatus.addEventListener("click", () => {
-      if (overlay) {
-        overlay.classList.remove("hidden");
-        overlay.setAttribute("aria-hidden", "false");
-        closeBtn?.focus();
-      }
+  // فتح المودال
+  if (statusBtn) {
+    statusBtn.addEventListener("click", () => {
+      statusBack.style.display = "flex";
+      setTimeout(() => statusBack.classList.add("show"), 10);
+      renderStatus();
     });
   }
 
-  if (closeBtn && overlay) {
-    closeBtn.addEventListener("click", () => {
-      overlay.classList.add("hidden");
-      overlay.setAttribute("aria-hidden", "true");
-      btnStatus?.focus();
+  // إغلاق المودال
+  if (closeStatus) {
+    closeStatus.addEventListener("click", () => {
+      statusBack.classList.remove("show");
+      setTimeout(() => (statusBack.style.display = "none"), 300);
     });
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) {
-        overlay.classList.add("hidden");
-        overlay.setAttribute("aria-hidden", "true");
-      }
+  }
+
+  // الضغط على الخلفية يقفل المودال
+  statusBack.addEventListener("click", (e) => {
+    if (e.target === statusBack) {
+      statusBack.classList.remove("show");
+      setTimeout(() => (statusBack.style.display = "none"), 300);
+    }
+  });
+
+  // عرض الأيام
+  function renderStatus() {
+    statusList.innerHTML = "";
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+
+    workingHours.forEach((day, index) => {
+      const li = document.createElement("div");
+      li.className = "hours-item";
+
+      // تحديد اليوم الحالي
+      if (index === todayIndex) li.classList.add("today");
+
+      li.innerHTML = `
+      <span>${day.day}</span>
+      <span>${day.open} - ${day.close}</span>
+    `;
+
+      statusList.appendChild(li);
     });
-    scheduleModal?.addEventListener("click", (e) => e.stopPropagation());
+
+    // حساب حالة اليوم الحالي
+    const today = workingHours[todayIndex];
+    const [openH, openM] = today.open.replace("م", "").replace("ص", "").split(":").map(Number);
+    const [closeH, closeM] = today.close.replace("م", "").replace("ص", "").split(":").map(Number);
+
+    // تحويل إلى 24 ساعة
+    let open24 = openH + (today.open.includes("م") && openH !== 12 ? 12 : 0);
+    let close24 = closeH + (today.close.includes("م") && closeH !== 12 ? 12 : 0);
+    if (close24 <= open24) close24 += 24; // لو بعد منتصف الليل
+
+    const now24 = currentHour + currentMinute / 60;
+    const isOpen = now24 >= open24 && now24 < close24;
+
+    statusBtn.textContent = isOpen ? "مفتوح" : "مغلق";
+    statusBtn.style.background = isOpen ? "#e8fff1" : "#fff5f5";
+    statusBtn.style.color = isOpen ? "#0a9e4f" : "#e53935";
+    statusBtn.style.fontWeight = "600";
   }
 
   // set today status text in the small modal

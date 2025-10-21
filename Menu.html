@@ -118,21 +118,17 @@
         </div>
         <div>
           <button id="status-btn">مغلق</button>
-
-          <div id="overlay" class="hidden" aria-hidden="true">
-            <div id="schedule-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-              <h3 id="modalTitle">مواعيد العمل</h3>
-              <ul>
-                <li>الأحد: 10 ص - 12 ص</li>
-                <li>الإثنين: 10 ص - 12 ص</li>
-                <li>الثلاثاء: 10 ص - 12 ص</li>
-                <li>الأربعاء: 10 ص - 12 ص</li>
-                <li>الخميس: 10 ص - 12 ص</li>
-                <li>الجمعة: 2 م - 1 ص</li>
-                <li>السبت: 10 ص - 12 ص</li>
-              </ul>
-              <p id="today-status"></p>
-              <button id="close-btn" type="button">إغلاق</button>
+          <!-- Modal: حالة اليوم -->
+          <div class="modal-back" id="statusBack" role="dialog" aria-hidden="true">
+            <div class="modal-box" role="document">
+              <button class="close-btn" id="closeStatus"><i class="fa fa-times"></i></button>
+              <h3>حالة اليوم</h3>
+              <div class="hours-list" id="statusList">
+                <div class="hours-item today">
+                  <span>الثلاثاء</span>
+                  <span>مفتوح</span>
+                </div>
+              </div>
             </div>
           </div>
 
