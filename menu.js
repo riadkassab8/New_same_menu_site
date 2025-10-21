@@ -579,4 +579,10 @@ closeHours.addEventListener("click", () => hoursModal.classList.remove("show"));
 hoursModal.addEventListener("click", (e) => {
   if (e.target === hoursModal) hoursModal.classList.remove("show");
 });
-// search
+// scroll contact
+function scrollToSection(id) {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}

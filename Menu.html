@@ -8,15 +8,18 @@
     <!-- Cairo font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="styles.css" />
     <style></style>
   </head>
   <body>
@@ -32,16 +35,19 @@
         </div>
 
         <div class="nav-right">
-          <div class="search-box">
-            <input type="text" id="searchInput" placeholder="ابحث هنا..." />
-            <button id="searchBtn"><i class="fa fa-magnifying-glass"></i></button>
+          <div class="search-toggle">
+            <i class="fa fa-search" id="openSearch"></i>
+            <div class="search-box hidden" id="searchBox">
+              <button id="closeSearch"><i class="fa fa-times"></i></button>
+              <input type="text" id="searchInput" placeholder="ابحث هنا..." />
+            </div>
           </div>
 
           <i class="fa fa-share-nodes"></i>
         </div>
 
         <div class="dropdown" id="dropdownMenu">
-          <button>
+          <button onclick="window.location.href='index.html'; document.getElementById('dropdownMenu').classList.remove('show');">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="var(--primary-color)" fill="none">
               <path
                 d="M3 11.9896V14.5C3 17.7998 3 19.4497 4.02513 20.4749C5.05025 21.5 6.70017 21.5 10 21.5H14C17.2998 21.5 18.9497 21.5 19.9749 20.4749C21 19.4497 21 17.7998 21 14.5V11.9896C21 10.3083 21 9.46773 20.6441 8.74005C20.2882 8.01237 19.6247 7.49628 18.2976 6.46411L16.2976 4.90855C14.2331 3.30285 13.2009 2.5 12 2.5C10.7991 2.5 9.76689 3.30285 7.70242 4.90855L5.70241 6.46411C4.37533 7.49628 3.71179 8.01237 3.3559 8.74005C3 9.46773 3 10.3083 3 11.9896Z"
@@ -59,7 +65,7 @@
               ></path></svg
             >الرئيسية
           </button>
-          <button>
+          <button onclick="window.location.href='index.html'; document.getElementById('dropdownMenu').classList.remove('show');">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="var(--primary-color)" fill="none">
               <path
                 d="M22 11.5667C22 16.8499 17.5222 21.1334 12 21.1334C11.3507 21.1343 10.7032 21.0742 10.0654 20.9545C9.60633 20.8682 9.37678 20.8251 9.21653 20.8496C9.05627 20.8741 8.82918 20.9948 8.37499 21.2364C7.09014 21.9197 5.59195 22.161 4.15111 21.893C4.69874 21.2194 5.07275 20.4112 5.23778 19.5448C5.33778 19.0148 5.09 18.5 4.71889 18.1231C3.03333 16.4115 2 14.1051 2 11.5667C2 6.28357 6.47778 2 12 2C17.5222 2 22 6.28357 22 11.5667Z"
@@ -90,6 +96,15 @@
           </button>
         </div>
       </header>
+      <!-- 🔍 Search Overlay -->
+      <!-- 🔍 Search Box داخل الكونتينر -->
+      <div class="search-wrapper hidden" id="searchWrapper">
+        <div class="search-box-inside">
+          <button id="closeSearchBtn" class="close-btn">إغلاق</button>
+          <input type="text" id="searchInput" placeholder="ابحث عن منتج..." dir="rtl" />
+        </div>
+        <p class="search-hint">ابدأ بالكتابة للبحث</p>
+      </div>
 
       <!-- ✅ مودال مواعيد العمل خارج الهيدر -->
       <div class="hours-overlay" id="hoursModal">
@@ -161,8 +176,35 @@
         <!-- sections injected by JS -->
       </main>
 
-      <!-- footer -->
-      <footer class="footer">© جميع الحقوق محفوظة - ألكسيس بيتزا · تواصل: <span id="bizPhone">+201009105861</span></footer>
+      <section class="contact-section">
+        <img src="https://menuoprohub.top/alex1/logo/1758024242433_793.webp" alt="Logo" class="logo" />
+        <h1>أليكس بيتزا</h1>
+        <h2>مذاق ايطالي ... بروح مصرية</h2>
+        <h2 class="subtitle">مذاق ايطالي ... بروح مصرية</h2>
+
+        <hr />
+
+        <h3>تواصل معنا</h3>
+        <p class="branch">فرع 1</p>
+
+        <div class="contact-info">
+          <div class="phone">
+            <p class="label">أرقام التليفون</p>
+            <i class="fa-solid fa-phone-volume"></i>
+          </div>
+          <input type="text" class="phone-input" value="+201009105861" readonly />
+
+          <p class="label" id="whatsapp">واتس اب</p>
+          <input type="text" class="phone-input phone2" value="+201009105861" readonly />
+          <!-- <a href="https://wa.me/201009105861" target="_blank">+201009105861</a> -->
+
+          <p class="label">العنوان</p>
+          <p>اول عباس العقاد</p>
+          <a href="#" class="map-link">عرض على الخريطة</a>
+        </div>
+
+        <hr />
+      </section>
     </div>
 
     <!-- cart FAB -->
@@ -210,6 +252,7 @@
         </div>
       </div>
     </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
