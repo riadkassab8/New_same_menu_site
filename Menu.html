@@ -34,7 +34,7 @@
 
       <div class="nav-right">
         <i class="fa fa-search" id="openSearch"></i>
-        <i class="fa fa-share-nodes"></i>
+        <i class="fa fa-share-nodes" id="openShare"></i>
       </div>
 
       <div class="dropdown" id="dropdownMenu">
@@ -81,6 +81,64 @@
       </div>
       <div class="search-results" id="searchResults">
         <!-- Search results will be displayed here -->
+      </div>
+    </div>
+
+    <!-- 🔗 Share Modal -->
+    <div class="share-overlay hidden" id="shareOverlay">
+      <div class="share-modal">
+        <div class="share-header">
+          <div class="share-title">
+            <i class="fa fa-share-nodes"></i>
+            <span>Share link</span>
+          </div>
+          <button id="closeShare" class="share-close-btn">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+
+        <div class="share-link-box">
+          <div class="link-icon">
+            <i class="fa fa-link"></i>
+          </div>
+          <div class="link-info">
+            <div class="link-title">menuo.pro</div>
+            <div class="link-url" id="shareLink">http://127.0.0.1:5500/index.html</div>
+          </div>
+          <button class="copy-btn" id="copyLink">
+            <i class="fa fa-copy"></i>
+          </button>
+        </div>
+
+        <div class="share-section">
+          <h3>Share using</h3>
+          <div class="share-options">
+            <button class="share-option" onclick="shareVia('whatsapp')">
+              <i class="fab fa-whatsapp"></i>
+              <span>WhatsApp</span>
+            </button>
+            <button class="share-option" onclick="shareVia('facebook')">
+              <i class="fab fa-facebook"></i>
+              <span>Facebook</span>
+            </button>
+            <button class="share-option" onclick="shareVia('twitter')">
+              <i class="fab fa-twitter"></i>
+              <span>Twitter</span>
+            </button>
+            <button class="share-option" onclick="shareVia('telegram')">
+              <i class="fab fa-telegram"></i>
+              <span>Telegram</span>
+            </button>
+            <button class="share-option" onclick="shareVia('email')">
+              <i class="fa fa-envelope"></i>
+              <span>Email</span>
+            </button>
+            <button class="share-option" onclick="shareVia('copy')">
+              <i class="fa fa-link"></i>
+              <span>Copy Link</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 

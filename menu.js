@@ -668,4 +668,71 @@ function scrollToSection(id) {
   }
 }
 
+// Share Modal functionality
+const openShare = document.getElementById("openShare");
+const shareOverlay = document.getElementById("shareOverlay");
+const closeShare = document.getElementById("closeShare");
+const copyLink = document.getElementById("copyLink");
+const shareLink = document.getElementById("shareLink");
+
+if (openShare && shareOverlay && closeShare) {
+  // Open share modal
+  openShare.addEventListener("click", () => {
+    shareOverlay.classList.remove("hidden");
+  });
+
+  // Close share modal
+  closeShare.addEventListener("click", () => {
+    shareOverlay.classList.add("hidden");
+  });
+
+  // Close when clicking outside
+  shareOverlay.addEventListener("click", (e) => {
+    if (e.target === shareOverlay) {
+      shareOverlay.classList.add("hidden");
+    }
+  });
+
+  // Copy link functionality
+  if (copyLink && shareLink) {
+    copyLink.addEventListener("click", () => {
+      const link = shareLink.textContent;
+      navigator.clipboard.writeText(link).then(() => {
+        const originalIcon = copyLink.innerHTML;
+        copyLink.innerHTML = '<i class="fa fa-check"></i>';
+        copyLink.style.background = "#16a34a";
+
+        setTimeout(() => {
+          copyLink.innerHTML = originalIcon;
+          copyLink.style.background = "";
+        }, 2000);
+      });
+    });
+  }
+}
+
+// Share via different platforms
+function shareVia(platform) {
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent("Check out this menu!");
+
+  const shareUrls = {
+    whatsapp: `https://wa.me/?text=${text}%20${url}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    twitter: `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
+    telegram: `https://t.me/share/url?url=${url}&text=${text}`,
+    email: `mailto:?subject=${text}&body=${url}`,
+    copy: null
+  };
+
+  if (platform === 'copy') {
+    const link = document.getElementById("shareLink").textContent;
+    navigator.clipboard.writeText(link).then(() => {
+      alert("Link copied to clipboard!");
+    });
+  } else if (shareUrls[platform]) {
+    window.open(shareUrls[platform], '_blank');
+  }
+}
+
 
