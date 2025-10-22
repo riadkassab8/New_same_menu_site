@@ -1,266 +1,241 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>قائمة الطعام - فرع</title>
 
-    <!-- Cairo font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>قائمة الطعام - فرع</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="menu.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <style></style>
-  </head>
-  <body>
-    <div class="page" id="page">
-      <header class="navbar">
-        <div class="nav-left">
-          <button class="delivery-btn">
-            <i class="fa fa-motorcycle"></i>
-          </button>
-          <button class="menu-btn" id="menuToggle">
-            <i class="fa fa-bars"></i>
-          </button>
-        </div>
+  <!-- Cairo font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
 
-        <div class="nav-right">
-          <div class="search-toggle">
-            <i class="fa fa-search" id="openSearch"></i>
-            <div class="search-box hidden" id="searchBox">
-              <button id="closeSearch"><i class="fa fa-times"></i></button>
-              <input type="text" id="searchInput" placeholder="ابحث هنا..." />
-            </div>
-          </div>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="menu.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style></style>
+</head>
 
-          <i class="fa fa-share-nodes"></i>
-        </div>
-
-        <div class="dropdown" id="dropdownMenu">
-          <button onclick="window.location.href='index.html'; document.getElementById('dropdownMenu').classList.remove('show');">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="var(--primary-color)" fill="none">
-              <path
-                d="M3 11.9896V14.5C3 17.7998 3 19.4497 4.02513 20.4749C5.05025 21.5 6.70017 21.5 10 21.5H14C17.2998 21.5 18.9497 21.5 19.9749 20.4749C21 19.4497 21 17.7998 21 14.5V11.9896C21 10.3083 21 9.46773 20.6441 8.74005C20.2882 8.01237 19.6247 7.49628 18.2976 6.46411L16.2976 4.90855C14.2331 3.30285 13.2009 2.5 12 2.5C10.7991 2.5 9.76689 3.30285 7.70242 4.90855L5.70241 6.46411C4.37533 7.49628 3.71179 8.01237 3.3559 8.74005C3 9.46773 3 10.3083 3 11.9896Z"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-              <path
-                d="M15 21.5V16.5C15 15.0858 15 14.3787 14.5607 13.9393C14.1213 13.5 13.4142 13.5 12 13.5C10.5858 13.5 9.87868 13.5 9.43934 13.9393C9 14.3787 9 15.0858 9 16.5V21.5"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path></svg
-            >الرئيسية
-          </button>
-          <button onclick="window.location.href='index.html'; document.getElementById('dropdownMenu').classList.remove('show');">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="var(--primary-color)" fill="none">
-              <path
-                d="M22 11.5667C22 16.8499 17.5222 21.1334 12 21.1334C11.3507 21.1343 10.7032 21.0742 10.0654 20.9545C9.60633 20.8682 9.37678 20.8251 9.21653 20.8496C9.05627 20.8741 8.82918 20.9948 8.37499 21.2364C7.09014 21.9197 5.59195 22.161 4.15111 21.893C4.69874 21.2194 5.07275 20.4112 5.23778 19.5448C5.33778 19.0148 5.09 18.5 4.71889 18.1231C3.03333 16.4115 2 14.1051 2 11.5667C2 6.28357 6.47778 2 12 2C17.5222 2 22 6.28357 22 11.5667Z"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linejoin="round"
-              ></path>
-              <path
-                d="M11.9955 12H12.0045M15.991 12H16M8 12H8.00897"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path></svg
-            >تواصل معنا
-          </button>
-          <button id="btnHours">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="var(--primary-color)" fill="none">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
-              <path
-                d="M9.5 9.5L12.9999 12.9996M16 8L11 13"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path></svg
-            >مواعيد العمل
-          </button>
-        </div>
-      </header>
-      <!-- 🔍 Search Overlay -->
-      <!-- 🔍 Search Box داخل الكونتينر -->
-      <div class="search-wrapper hidden" id="searchWrapper">
-        <div class="search-box-inside">
-          <button id="closeSearchBtn" class="close-btn">إغلاق</button>
-          <input type="text" id="searchInput" placeholder="ابحث عن منتج..." dir="rtl" />
-        </div>
-        <p class="search-hint">ابدأ بالكتابة للبحث</p>
+<body>
+  <div class="page" id="page">
+    <header class="navbar">
+      <div class="nav-left">
+        <button class="delivery-btn">
+          <i class="fa fa-motorcycle"></i>
+        </button>
+        <button class="menu-btn" id="menuToggle">
+          <i class="fa fa-bars"></i>
+        </button>
       </div>
 
-      <!-- ✅ مودال مواعيد العمل خارج الهيدر -->
-      <div class="hours-overlay" id="hoursModal">
-        <div class="hours-box">
-          <button class="close-btn" id="closeHours"><i class="fa fa-times"></i></button>
-          <h2>مواعيد العمل</h2>
-          <ul class="hours-list" id="hoursList"></ul>
-        </div>
+      <div class="nav-right">
+        <i class="fa fa-search" id="openSearch"></i>
+        <i class="fa fa-share-nodes"></i>
       </div>
 
-      <!-- banner -->
-      <!-- Swiper -->
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="images/1.webp" alt="" /></div>
-          <div class="swiper-slide"><img src="images/2.webp" alt="" /></div>
-          <div class="swiper-slide"><img src="images/3.webp" alt="" /></div>
-          <div class="swiper-slide"><img src="images/4.webp" alt="" /></div>
+      <div class="dropdown" id="dropdownMenu">
+        <button
+          onclick="window.location.href='index.html'; document.getElementById('dropdownMenu').classList.remove('show');">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
+            color="var(--primary-color)" fill="none">
+            <path
+              d="M3 11.9896V14.5C3 17.7998 3 19.4497 4.02513 20.4749C5.05025 21.5 6.70017 21.5 10 21.5H14C17.2998 21.5 18.9497 21.5 19.9749 20.4749C21 19.4497 21 17.7998 21 14.5V11.9896C21 10.3083 21 9.46773 20.6441 8.74005C20.2882 8.01237 19.6247 7.49628 18.2976 6.46411L16.2976 4.90855C14.2331 3.30285 13.2009 2.5 12 2.5C10.7991 2.5 9.76689 3.30285 7.70242 4.90855L5.70241 6.46411C4.37533 7.49628 3.71179 8.01237 3.3559 8.74005C3 9.46773 3 10.3083 3 11.9896Z"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path
+              d="M15 21.5V16.5C15 15.0858 15 14.3787 14.5607 13.9393C14.1213 13.5 13.4142 13.5 12 13.5C10.5858 13.5 9.87868 13.5 9.43934 13.9393C9 14.3787 9 15.0858 9 16.5V21.5"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>الرئيسية
+        </button>
+        <button
+          onclick="window.location.href='index.html'; document.getElementById('dropdownMenu').classList.remove('show');">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
+            color="var(--primary-color)" fill="none">
+            <path
+              d="M22 11.5667C22 16.8499 17.5222 21.1334 12 21.1334C11.3507 21.1343 10.7032 21.0742 10.0654 20.9545C9.60633 20.8682 9.37678 20.8251 9.21653 20.8496C9.05627 20.8741 8.82918 20.9948 8.37499 21.2364C7.09014 21.9197 5.59195 22.161 4.15111 21.893C4.69874 21.2194 5.07275 20.4112 5.23778 19.5448C5.33778 19.0148 5.09 18.5 4.71889 18.1231C3.03333 16.4115 2 14.1051 2 11.5667C2 6.28357 6.47778 2 12 2C17.5222 2 22 6.28357 22 11.5667Z"
+              stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M11.9955 12H12.0045M15.991 12H16M8 12H8.00897" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>تواصل معنا
+        </button>
+        <button id="btnHours">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
+            color="var(--primary-color)" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M9.5 9.5L12.9999 12.9996M16 8L11 13" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>مواعيد العمل
+        </button>
+      </div>
+    </header>
+    <!-- 🔍 Search Overlay -->
+    <div class="search-overlay hidden" id="searchOverlay">
+      <div class="search-header">
+        <button id="closeSearch" class="search-close-btn">
+          <i class="fa fa-times"></i>
+        </button>
+        <input type="text" id="searchInput" placeholder="ابحث هنا..." dir="rtl" />
+      </div>
+      <div class="search-results" id="searchResults">
+        <!-- Search results will be displayed here -->
+      </div>
+    </div>
+
+    <!-- ✅ مودال مواعيد العمل خارج الهيدر -->
+    <div class="hours-overlay" id="hoursModal">
+      <div class="hours-box">
+        <button class="close-btn" id="closeHours"><i class="fa fa-times"></i></button>
+        <h2>مواعيد العمل</h2>
+        <ul class="hours-list" id="hoursList"></ul>
+      </div>
+    </div>
+
+    <!-- banner -->
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/1.webp" alt="" /></div>
+        <div class="swiper-slide"><img src="images/2.webp" alt="" /></div>
+        <div class="swiper-slide"><img src="images/3.webp" alt="" /></div>
+        <div class="swiper-slide"><img src="images/4.webp" alt="" /></div>
+      </div>
+    </div>
+
+    <!-- business card -->
+    <div class="biz" role="region" aria-label="معلومات الفرع">
+      <div class="winner">
+        <div class="logo"><img src="images/1758024242433_793.webp" alt="logo" /></div>
+        <div class="meta">
+          <h2 id="bizTitle">ألكسيس بيتزا</h2>
+          <p id="bizSub">فرع: مدينة نصر - شارع النصر</p>
         </div>
       </div>
-
-      <!-- business card -->
-      <div class="biz" role="region" aria-label="معلومات الفرع">
-        <div class="winner">
-          <div class="logo"><img src="images/1758024242433_793.webp" alt="logo" /></div>
-          <div class="meta">
-            <h2 id="bizTitle">ألكسيس بيتزا</h2>
-            <p id="bizSub">فرع: مدينة نصر - شارع النصر</p>
-          </div>
-        </div>
-        <div>
-          <button id="status-btn">مغلق</button>
-          <!-- Modal: حالة اليوم -->
-          <div class="modal-back" id="statusBack" role="dialog" aria-hidden="true">
-            <div class="modal-box" role="document">
-              <button class="close-btn" id="closeStatus"><i class="fa fa-times"></i></button>
-              <h3>حالة اليوم</h3>
-              <div class="hours-list" id="statusList">
-                <div class="hours-item today">
-                  <span>الثلاثاء</span>
-                  <span>مفتوح</span>
-                </div>
+      <div>
+        <button id="status-btn">مغلق</button>
+        <!-- Modal: حالة اليوم -->
+        <div class="modal-back" id="statusBack" role="dialog" aria-hidden="true">
+          <div class="modal-box" role="document">
+            <button class="close-btn" id="closeStatus"><i class="fa fa-times"></i></button>
+            <h3>حالة اليوم</h3>
+            <div class="hours-list" id="statusList">
+              <div class="hours-item today">
+                <span>الثلاثاء</span>
+                <span>مفتوح</span>
               </div>
             </div>
           </div>
-
-          <div class="h-0.5"></div>
-          <div>
-            <button id="follow-btn">تتبع الطلب</button>
-          </div>
-        </div>
-      </div>
-      <!-- minimal HTML (keep your existing .ticker and items) -->
-      <div class="custom-ticker-wrap">
-        <div class="custom-ticker">
-          <div class="custom-ticker__item">🍔 عرض خاص اليوم: برجر بسعر 50 جنيه فقط!</div>
-          <div class="custom-ticker__item">🥤 احصل على مشروب مجاني مع كل وجبة كومبو!</div>
-          <div class="custom-ticker__item">🚗 التوصيل متاح في جميع مناطق مدينة نصر.</div>
-          <div class="custom-ticker__item">📞 اطلب الآن: +201009105861</div>
-        </div>
-      </div>
-      <!-- category bar (sticky) -->
-      <div class="catbar-wrap">
-        <div class="catbar" id="catbar" role="navigation" aria-label="فئات القائمة"></div>
-      </div>
-
-      <!-- main menu content -->
-      <main id="menuContent" style="display: flex; flex-direction: column; gap: 8px">
-        <!-- sections injected by JS -->
-      </main>
-
-      <section class="contact-section">
-        <img src="https://menuoprohub.top/alex1/logo/1758024242433_793.webp" alt="Logo" class="logo" />
-        <h1>أليكس بيتزا</h1>
-        <h2>مذاق ايطالي ... بروح مصرية</h2>
-        <h2 class="subtitle">مذاق ايطالي ... بروح مصرية</h2>
-
-        <hr />
-
-        <h3>تواصل معنا</h3>
-        <p class="branch">فرع 1</p>
-
-        <div class="contact-info">
-          <div class="phone">
-            <p class="label">أرقام التليفون</p>
-            <i class="fa-solid fa-phone-volume"></i>
-          </div>
-          <input type="text" class="phone-input" value="+201009105861" readonly />
-
-          <p class="label" id="whatsapp">واتس اب</p>
-          <input type="text" class="phone-input phone2" value="+201009105861" readonly />
-          <!-- <a href="https://wa.me/201009105861" target="_blank">+201009105861</a> -->
-
-          <p class="label">العنوان</p>
-          <p>اول عباس العقاد</p>
-          <a href="#" class="map-link">عرض على الخريطة</a>
         </div>
 
-        <hr />
-      </section>
-    </div>
-
-    <!-- cart FAB -->
-    <button class="cart-fab" id="openCartBtn"><i class="fa fa-basket-shopping"></i> سلة (<span id="cartCount">0</span>)</button>
-
-    <!-- cart drawer -->
-    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-      <h3>سلة الطلب</h3>
-      <div id="cartList" style="max-height: 60vh; overflow: auto; margin-top: 8px"></div>
-      <div class="total-row"><strong>الإجمالي</strong><strong id="cartTotal">0 ج.م</strong></div>
-      <button class="checkout" id="checkoutBtn">تأكيد الطلب</button>
-      <button
-        id="closeCart"
-        style="margin-top: 8px; background: transparent; border: 1px solid rgba(15, 23, 42, 0.04); padding: 8px; border-radius: 8px; cursor: pointer"
-      >
-        إغلاق
-      </button>
-    </aside>
-
-    <!-- modal: hours -->
-    <div class="modal-back" id="modalBack" role="dialog" aria-hidden="true" aria-modal="true">
-      <div class="modal" role="document">
-        <button class="close" id="closeModal"><i class="fa fa-times"></i></button>
-        <h3>مواعيد العمل</h3>
-        <div style="margin-top: 10px" class="hours-list" id="hoursList">
-          <!-- hours items injected -->
+        <div class="h-0.5"></div>
+        <div>
+          <button id="follow-btn">تتبع الطلب</button>
         </div>
       </div>
     </div>
-
-    <!-- modal: contact (simple) -->
-    <div class="modal-back" id="contactBack" role="dialog" aria-hidden="true" aria-modal="true" style="display: none">
-      <div class="modal" role="document">
-        <button class="close" id="closeContact"><i class="fa fa-times"></i></button>
-        <h3>تواصل معنا</h3>
-        <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px">
-          <input id="cName" placeholder="الاسم" style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06)" />
-          <input id="cPhone" placeholder="رقم الهاتف" style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06)" />
-          <textarea
-            id="cMsg"
-            placeholder="رسالتك"
-            style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06); min-height: 100px"
-          ></textarea>
-          <button id="sendContact" class="checkout">إرسال</button>
-        </div>
+    <!-- minimal HTML (keep your existing .ticker and items) -->
+    <div class="custom-ticker-wrap">
+      <div class="custom-ticker">
+        <div class="custom-ticker__item">🍔 عرض خاص اليوم: برجر بسعر 50 جنيه فقط!</div>
+        <div class="custom-ticker__item">🥤 احصل على مشروب مجاني مع كل وجبة كومبو!</div>
+        <div class="custom-ticker__item">🚗 التوصيل متاح في جميع مناطق مدينة نصر.</div>
+        <div class="custom-ticker__item">📞 اطلب الآن: +201009105861</div>
       </div>
     </div>
+    <!-- category bar (sticky) -->
+    <div class="catbar-wrap">
+      <div class="catbar" id="catbar" role="navigation" aria-label="فئات القائمة"></div>
+    </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+    <!-- main menu content -->
+    <main id="menuContent" style="display: flex; flex-direction: column; gap: 8px">
+      <!-- sections injected by JS -->
+    </main>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="menu.js"></script>
-  </body>
+    <section class="contact-section">
+      <img src="https://menuoprohub.top/alex1/logo/1758024242433_793.webp" alt="Logo" class="logo" />
+      <h1>أليكس بيتزا</h1>
+      <h2>مذاق ايطالي ... بروح مصرية</h2>
+      <h2 class="subtitle">مذاق ايطالي ... بروح مصرية</h2>
+
+      <hr />
+
+      <h3>تواصل معنا</h3>
+      <p class="branch">فرع 1</p>
+
+      <div class="contact-info">
+        <div class="phone">
+          <p class="label">أرقام التليفون</p>
+          <i class="fa-solid fa-phone-volume"></i>
+        </div>
+        <input type="text" class="phone-input" value="+201009105861" readonly />
+
+        <p class="label" id="whatsapp">واتس اب</p>
+        <input type="text" class="phone-input phone2" value="+201009105861" readonly />
+        <!-- <a href="https://wa.me/201009105861" target="_blank">+201009105861</a> -->
+
+        <p class="label">العنوان</p>
+        <p>اول عباس العقاد</p>
+        <a href="#" class="map-link">عرض على الخريطة</a>
+      </div>
+
+      <hr />
+    </section>
+  </div>
+
+  <!-- cart FAB -->
+  <button class="cart-fab" id="openCartBtn"><i class="fa fa-basket-shopping"></i> سلة (<span
+      id="cartCount">0</span>)</button>
+
+  <!-- cart drawer -->
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <h3>سلة الطلب</h3>
+    <div id="cartList" style="max-height: 60vh; overflow: auto; margin-top: 8px"></div>
+    <div class="total-row"><strong>الإجمالي</strong><strong id="cartTotal">0 ج.م</strong></div>
+    <button class="checkout" id="checkoutBtn">تأكيد الطلب</button>
+    <button id="closeCart"
+      style="margin-top: 8px; background: transparent; border: 1px solid rgba(15, 23, 42, 0.04); padding: 8px; border-radius: 8px; cursor: pointer">
+      إغلاق
+    </button>
+  </aside>
+
+  <!-- modal: hours -->
+  <div class="modal-back" id="modalBack" role="dialog" aria-hidden="true" aria-modal="true">
+    <div class="modal" role="document">
+      <button class="close" id="closeModal"><i class="fa fa-times"></i></button>
+      <h3>مواعيد العمل</h3>
+      <div style="margin-top: 10px" class="hours-list" id="hoursList">
+        <!-- hours items injected -->
+      </div>
+    </div>
+  </div>
+
+  <!-- modal: contact (simple) -->
+  <div class="modal-back" id="contactBack" role="dialog" aria-hidden="true" aria-modal="true" style="display: none">
+    <div class="modal" role="document">
+      <button class="close" id="closeContact"><i class="fa fa-times"></i></button>
+      <h3>تواصل معنا</h3>
+      <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px">
+        <input id="cName" placeholder="الاسم"
+          style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06)" />
+        <input id="cPhone" placeholder="رقم الهاتف"
+          style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06)" />
+        <textarea id="cMsg" placeholder="رسالتك"
+          style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06); min-height: 100px"></textarea>
+        <button id="sendContact" class="checkout">إرسال</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="menu.js"></script>
+</body>
+
 </html>

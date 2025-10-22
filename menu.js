@@ -180,16 +180,98 @@ document.addEventListener("DOMContentLoaded", () => {
 
   onScrollSpy();
 
-  /*************** Search filter ***************/
-  if (searchInput) {
+  /*************** Search overlay ***************/
+  const openSearch = document.getElementById("openSearch");
+  const searchOverlay = document.getElementById("searchOverlay");
+  const closeSearch = document.getElementById("closeSearch");
+  const searchResults = document.getElementById("searchResults");
+
+  if (openSearch && searchOverlay && closeSearch && searchInput && searchResults) {
+    // Open search overlay
+    openSearch.addEventListener("click", (e) => {
+      e.stopPropagation();
+      searchOverlay.classList.remove("hidden");
+      searchInput.focus();
+      renderAllItems();
+    });
+
+    // Close search overlay
+    closeSearch.addEventListener("click", () => {
+      searchOverlay.classList.add("hidden");
+      searchInput.value = "";
+      searchResults.innerHTML = "";
+    });
+
+    // Search functionality
     searchInput.addEventListener("input", (e) => {
       const q = e.target.value.trim().toLowerCase();
-      document.querySelectorAll(".item").forEach((it) => {
-        const title = it.querySelector("h4")?.textContent.trim().toLowerCase() || "";
-        const desc = it.querySelector("p")?.textContent.trim().toLowerCase() || "";
-        it.style.display = (title + " " + desc).includes(q) ? "flex" : "none";
-      });
+      if (q === "") {
+        renderAllItems();
+      } else {
+        filterItems(q);
+      }
     });
+
+    // Render all items initially
+    function renderAllItems() {
+      searchResults.innerHTML = "";
+      DATA.categories.forEach((cat) => {
+        const items = DATA.items.filter((it) => it.cat === cat.id);
+        if (items.length > 0) {
+          const catSection = document.createElement("div");
+          catSection.className = "search-category";
+          catSection.innerHTML = `<h3>${cat.title}</h3>`;
+
+          items.forEach((item) => {
+            catSection.appendChild(createSearchItem(item));
+          });
+
+          searchResults.appendChild(catSection);
+        }
+      });
+    }
+
+    // Filter items based on search query
+    function filterItems(query) {
+      searchResults.innerHTML = "";
+      const filtered = DATA.items.filter((item) => {
+        const title = item.title.toLowerCase();
+        const desc = item.desc.toLowerCase();
+        return title.includes(query) || desc.includes(query);
+      });
+
+      if (filtered.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">لا توجد نتائج</div>';
+      } else {
+        filtered.forEach((item) => {
+          searchResults.appendChild(createSearchItem(item));
+        });
+      }
+    }
+
+    // Create search item element
+    function createSearchItem(item) {
+      const el = document.createElement("div");
+      el.className = "search-item";
+      el.innerHTML = `
+        <img src="${item.img}" alt="${escapeHtml(item.title)}">
+        <div class="search-item-info">
+          <h4>${escapeHtml(item.title)}</h4>
+          <p>${escapeHtml(item.desc)}</p>
+          <div class="search-item-footer">
+            <span class="search-item-price">${item.price} ج.م</span>
+            <button class="search-add-btn" data-id="${item.id}">أضف</button>
+          </div>
+        </div>
+      `;
+
+      // Add to cart functionality
+      el.querySelector(".search-add-btn").addEventListener("click", () => {
+        addToCartById(item.id);
+      });
+
+      return el;
+    }
   }
 
   /*************** CART (localStorage) ***************/
@@ -321,9 +403,8 @@ document.addEventListener("DOMContentLoaded", () => {
     DATA.hours.forEach((h) => {
       const div = document.createElement("div");
       div.className = "hours-item " + (h.state === "مغلق" ? "closed" : h.times.includes("مفتوح") ? "openall" : "");
-      div.innerHTML = `<div>${h.day}</div><div style="text-align:left">${
-        h.state === "مغلق" ? '<strong style="color:var(--accent)">مغلق</strong>' : h.times
-      }</div>`;
+      div.innerHTML = `<div>${h.day}</div><div style="text-align:left">${h.state === "مغلق" ? '<strong style="color:var(--accent)">مغلق</strong>' : h.times
+        }</div>`;
       hoursList.appendChild(div);
     });
   }
@@ -586,3 +667,5 @@ function scrollToSection(id) {
     section.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
+
+
