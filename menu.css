@@ -252,7 +252,7 @@ body {
 /* category bar sticky */
 .catbar-wrap {
   position: sticky;
-  top: 10px;
+  top: 0px;
   background: #fff;
   z-index: 50;
   display: flex;
