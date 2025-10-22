@@ -215,7 +215,7 @@ body {
 .custom-ticker {
   display: inline-block;
   white-space: nowrap;
-  animation: moveTicker 8s linear infinite;
+  animation: moveTicker 15s linear infinite;
   will-change: transform;
   transform: translateX(0);
   /* start visible */
@@ -308,6 +308,7 @@ body {
 }
 
 .item {
+  height: 10em;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -319,8 +320,8 @@ body {
 }
 
 .thumb {
-  width: 80px;
-  height: 80px;
+  width: 25%;
+  height: 90%;
   border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
