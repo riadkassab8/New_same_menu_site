@@ -84,6 +84,105 @@
       </div>
     </div>
 
+    <!-- 🍕 Product Detail Modal -->
+    <div class="product-modal hidden" id="productModal">
+      <div class="product-modal-content">
+        <button class="product-close-btn" id="closeProductModal">
+          <i class="fa fa-times"></i>
+        </button>
+
+        <div class="product-image-container">
+          <img id="modalProductImage" src="" alt="" />
+        </div>
+
+        <div class="product-details">
+          <div class="product-header">
+            <button class="product-share-btn">
+              <i class="fa fa-share-nodes"></i>
+            </button>
+            <h2 id="modalProductTitle"></h2>
+          </div>
+
+          <p id="modalProductDesc" class="product-description"></p>
+
+          <div class="product-badge">
+            <i class="fa fa-fire"></i>
+            <span>احتر</span>
+          </div>
+
+          <div class="product-sizes" id="productSizes">
+            <label class="size-option">
+              <input type="radio" name="size" value="S" data-price="100" checked />
+              <span class="size-label">
+                <span class="size-name">S</span>
+                <span class="size-price">100 ج.م</span>
+              </span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size" value="M" data-price="150" />
+              <span class="size-label">
+                <span class="size-name">M</span>
+                <span class="size-price">150 ج.م</span>
+              </span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size" value="L" data-price="200" />
+              <span class="size-label">
+                <span class="size-name">L</span>
+                <span class="size-price">200 ج.م</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="product-extras">
+            <h3>إضافة <span>(اختر من 0 الى 2)</span></h3>
+            <label class="extra-option">
+              <input type="checkbox" value="20" />
+              <span class="extra-label">
+                <span>إضافة جبنة موتزاريلا</span>
+                <span class="extra-price">20+ ج.م</span>
+              </span>
+            </label>
+            <label class="extra-option">
+              <input type="checkbox" value="20" />
+              <span class="extra-label">
+                <span>إضافة مشروم</span>
+                <span class="extra-price">20+ ج.م</span>
+              </span>
+            </label>
+            <label class="extra-option">
+              <input type="checkbox" value="20" />
+              <span class="extra-label">
+                <span>إضافة باربيكيو</span>
+                <span class="extra-price">20+ ج.م</span>
+              </span>
+            </label>
+            <label class="extra-option">
+              <input type="checkbox" value="20" />
+              <span class="extra-label">
+                <span>إضافة فلفل</span>
+                <span class="extra-price">20+ ج.م</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="product-footer">
+            <div class="product-total">
+              <span id="modalProductTotal">0 ج.م</span>
+            </div>
+            <div class="product-quantity">
+              <button class="qty-btn" id="modalQtyMinus">-</button>
+              <span id="modalQty">1</span>
+              <button class="qty-btn" id="modalQtyPlus">+</button>
+            </div>
+            <button class="add-to-cart-btn" id="modalAddToCart">
+              أضف إلى السلة
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 🔗 Share Modal -->
     <div class="share-overlay hidden" id="shareOverlay">
       <div class="share-modal">

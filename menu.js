@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
         title: "بيتزا مارغريتا",
         desc: "صلصة طماطم، جبنة موزاريلا، ريحان",
         price: 220,
-        img: "https://picsum.photos/seed/p1/160/120",
+        img: "images/pizza-pizza-filled-with-tomatoes-salami-olives.jpg"
+
       },
       { id: 1002, cat: "pizza", title: "بيتزا دجاج", desc: "دجاج مشوي، جبنة، ذرة", price: 260, img: "https://picsum.photos/seed/p2/160/120" },
       { id: 1003, cat: "pizza", title: "بيتزا سي فود", desc: "روبيان، كالماري، صلصة حارة", price: 300, img: "https://picsum.photos/seed/p3/160/120" },
@@ -306,10 +307,16 @@ document.addEventListener("DOMContentLoaded", () => {
       CART.forEach((ci) => {
         const div = document.createElement("div");
         div.className = "cart-item";
+
+        // Build extras text
+        const extrasText = ci.extras && ci.extras.length > 0 ? `<div style="color:var(--muted);font-size:12px">+ ${ci.extras.join(", ")}</div>` : "";
+        const sizeText = ci.size ? `<span style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:11px;margin-left:4px">${ci.size}</span>` : "";
+
         div.innerHTML = `
           <img src="${ci.img}" alt="${escapeHtml(ci.title)}">
           <div style="flex:1">
-            <div style="font-weight:700">${escapeHtml(ci.title)}</div>
+            <div style="font-weight:700">${escapeHtml(ci.title)} ${sizeText}</div>
+            ${extrasText}
             <div style="color:var(--muted);font-size:13px">${ci.qty} × ${ci.price} ج.م</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
@@ -326,9 +333,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cartList.querySelectorAll("button[data-action]").forEach((b) => {
         b.addEventListener("click", () => {
-          const id = Number(b.dataset.id);
+          const id = b.dataset.id;
           const action = b.dataset.action;
-          const idx = CART.findIndex((x) => x.id === id);
+          const idx = CART.findIndex((x) => String(x.id) === String(id));
           if (idx === -1) return;
           if (action === "plus") CART[idx].qty++;
           else CART[idx].qty--;
@@ -342,6 +349,12 @@ document.addEventListener("DOMContentLoaded", () => {
     cartCountEl.textContent = CART.reduce((s, i) => s + i.qty, 0);
   }
   updateCartUI();
+
+  // Listen for cart updates from modal
+  window.addEventListener("cartUpdated", () => {
+    CART = JSON.parse(localStorage.getItem("branch_cart_v2") || "[]");
+    updateCartUI();
+  });
 
   // cart open/close
   if (openCartBtn && cartDrawer) {
@@ -559,8 +572,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // expose sectionEls for debugging if needed
+  // expose sectionEls and DATA for debugging and modal access
   window.sectionEls = sectionEls;
+  window.DATA = DATA;
   // ensure scrollspy recalculation after images load
   window.addEventListener("load", () => {
     sectionEls = Array.from(document.querySelectorAll(".section"));
@@ -736,3 +750,214 @@ function shareVia(platform) {
 }
 
 
+
+
+// Product Detail Modal
+(function () {
+  const productModal = document.getElementById("productModal");
+  const closeProductModal = document.getElementById("closeProductModal");
+  const modalProductImage = document.getElementById("modalProductImage");
+  const modalProductTitle = document.getElementById("modalProductTitle");
+  const modalProductDesc = document.getElementById("modalProductDesc");
+  const modalProductTotal = document.getElementById("modalProductTotal");
+  const modalQty = document.getElementById("modalQty");
+  const modalQtyPlus = document.getElementById("modalQtyPlus");
+  const modalQtyMinus = document.getElementById("modalQtyMinus");
+  const modalAddToCart = document.getElementById("modalAddToCart");
+
+  let currentProduct = null;
+  let quantity = 1;
+
+  // Open product modal when clicking on item (but not on add button)
+  document.addEventListener("click", (e) => {
+    const item = e.target.closest(".item");
+    if (item && !e.target.closest(".addbtn")) {
+      const itemId = item.querySelector(".addbtn")?.dataset.id;
+      if (itemId) {
+        openProductModal(parseInt(itemId));
+      }
+    }
+  });
+
+  function openProductModal(productId) {
+    // Access DATA from the main scope
+    const DATA = window.DATA || {
+      items: [
+        {
+          id: 1001,
+          cat: "pizza",
+          title: "بيتزا مارغريتا",
+          desc: "صلصة طماطم، جبنة موزاريلا، ريحان",
+          price: 220,
+          img: "https://picsum.photos/seed/p1/160/120",
+        },
+      ],
+    };
+
+    const product = DATA.items.find((p) => p.id === productId);
+    if (!product) return;
+
+    currentProduct = product;
+    quantity = 1;
+
+    // Set product details
+    if (modalProductImage) modalProductImage.src = product.img;
+    if (modalProductImage) modalProductImage.alt = product.title;
+    if (modalProductTitle) modalProductTitle.textContent = product.title;
+    if (modalProductDesc) modalProductDesc.textContent = product.desc;
+    if (modalQty) modalQty.textContent = quantity;
+
+    // Update all size prices based on product
+    document.querySelectorAll('input[name="size"]').forEach((radio, index) => {
+      const multiplier = index === 0 ? 1 : index === 1 ? 1.5 : 2;
+      const price = Math.round(product.price * multiplier);
+      radio.dataset.price = price;
+      const priceEl = radio.nextElementSibling?.querySelector(".size-price");
+      if (priceEl) priceEl.textContent = price + " ج.م";
+      if (index === 0) radio.checked = true;
+    });
+
+    // Reset extras
+    document.querySelectorAll('.product-extras input[type="checkbox"]').forEach((cb) => {
+      cb.checked = false;
+    });
+
+    updateTotal();
+    if (productModal) productModal.classList.remove("hidden");
+  }
+
+  function updateTotal() {
+    if (!currentProduct) return;
+
+    const selectedSize = document.querySelector('input[name="size"]:checked');
+    let total = parseInt(selectedSize?.dataset.price || currentProduct.price);
+
+    // Add extras
+    document.querySelectorAll('.product-extras input[type="checkbox"]:checked').forEach((cb) => {
+      total += parseInt(cb.value);
+    });
+
+    total *= quantity;
+    if (modalProductTotal) modalProductTotal.textContent = total + " ج.م";
+  }
+
+  // Close modal
+  if (closeProductModal) {
+    closeProductModal.addEventListener("click", () => {
+      if (productModal) productModal.classList.add("hidden");
+    });
+  }
+
+  // Close on outside click
+  if (productModal) {
+    productModal.addEventListener("click", (e) => {
+      if (e.target === productModal) {
+        productModal.classList.add("hidden");
+      }
+    });
+  }
+
+  // Quantity controls
+  if (modalQtyPlus) {
+    modalQtyPlus.addEventListener("click", () => {
+      quantity++;
+      if (modalQty) modalQty.textContent = quantity;
+      updateTotal();
+    });
+  }
+
+  if (modalQtyMinus) {
+    modalQtyMinus.addEventListener("click", () => {
+      if (quantity > 1) {
+        quantity--;
+        if (modalQty) modalQty.textContent = quantity;
+        updateTotal();
+      }
+    });
+  }
+
+  // Size change
+  document.querySelectorAll('input[name="size"]').forEach((radio) => {
+    radio.addEventListener("change", updateTotal);
+  });
+
+  // Extras change
+  document.querySelectorAll('.product-extras input[type="checkbox"]').forEach((cb) => {
+    cb.addEventListener("change", updateTotal);
+  });
+
+  // Add to cart
+  if (modalAddToCart) {
+    modalAddToCart.addEventListener("click", () => {
+      if (!currentProduct) return;
+
+      const selectedSize = document.querySelector('input[name="size"]:checked');
+      const sizeValue = selectedSize?.value || "M";
+      const sizePrice = parseInt(selectedSize?.dataset.price || currentProduct.price);
+
+      // Get selected extras
+      const extras = [];
+      let extrasPrice = 0;
+      document.querySelectorAll('.product-extras input[type="checkbox"]:checked').forEach((cb) => {
+        const extraName = cb.nextElementSibling?.querySelector("span")?.textContent;
+        const extraPrice = parseInt(cb.value);
+        if (extraName) {
+          extras.push(extraName);
+          extrasPrice += extraPrice;
+        }
+      });
+
+      // Calculate final price per item
+      const itemPrice = sizePrice + extrasPrice;
+
+      // Create cart item with all details
+      const cartItem = {
+        id: currentProduct.id + "-" + sizeValue + "-" + Date.now(), // Unique ID for each variant
+        originalId: currentProduct.id,
+        title: currentProduct.title,
+        desc: currentProduct.desc,
+        img: currentProduct.img,
+        price: itemPrice,
+        qty: quantity,
+        size: sizeValue,
+        extras: extras,
+      };
+
+      // Access the global CART from window or localStorage
+      let CART = JSON.parse(localStorage.getItem("branch_cart_v2") || "[]");
+
+      // Check if same item with same size and extras exists
+      const existingIndex = CART.findIndex(
+        (item) =>
+          item.originalId === currentProduct.id &&
+          item.size === sizeValue &&
+          JSON.stringify(item.extras) === JSON.stringify(extras)
+      );
+
+      if (existingIndex !== -1) {
+        // Update quantity if same variant exists
+        CART[existingIndex].qty += quantity;
+      } else {
+        // Add new item
+        CART.push(cartItem);
+      }
+
+      // Save to localStorage
+      localStorage.setItem("branch_cart_v2", JSON.stringify(CART));
+
+      // Trigger cart UI update by dispatching a custom event
+      window.dispatchEvent(new Event("cartUpdated"));
+
+      // Close modal
+      if (productModal) productModal.classList.add("hidden");
+
+      // Show toast
+      const t = document.createElement("div");
+      t.textContent = `تمت الإضافة للسلة (${quantity}×)`;
+      t.style.cssText =
+        "position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:rgba(15,23,42,0.9);color:#fff;padding:8px 14px;border-radius:10px;z-index:9999";
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 1400);
+    });
+  }
+})();
