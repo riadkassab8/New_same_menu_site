@@ -1,0 +1,230 @@
+/* ----------------------------
+   🌟 إعدادات عامة
+----------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #fff8f3;
+    color: #222;
+    direction: rtl;
+    text-align: center;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+/* ----------------------------
+   🧭 الهيدر
+----------------------------- */
+header {
+    background: linear-gradient(90deg, #e63946, #d90429);
+    color: white;
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+header img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+header .contact-icons a {
+    color: white;
+    margin: 0 8px;
+    font-size: 1.6rem;
+    transition: transform 0.3s ease;
+}
+
+header .contact-icons a:hover {
+    transform: scale(1.25);
+    color: #ffd166;
+}
+
+/* ----------------------------
+   🏠 القسم الترحيبي (Hero)
+----------------------------- */
+.hero {
+    padding: 2rem 1rem;
+    background: #ffffff;
+}
+
+.hero h1 {
+    color: #e63946;
+    font-size: 2.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero h2 {
+    color: #555;
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+
+/* ----------------------------
+   📸 السلايدر
+----------------------------- */
+.swiper {
+    width: 100%;
+    height: 320px;
+    margin: 1.5rem 0;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* ----------------------------
+   🍕 قسم الطلب والمنيو
+----------------------------- */
+.order-section {
+    background: #fff0ea;
+    border-radius: 10px;
+    margin: 2rem auto;
+    padding: 2rem 1rem;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.order-section h2 {
+    font-size: 1.6rem;
+    color: #d90429;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #c1121f;
+    transform: scale(1.05);
+}
+
+/* ----------------------------
+   ☎️ قسم التواصل
+----------------------------- */
+.contact-section {
+    background: #f7f7f7;
+    padding: 2rem 1rem;
+}
+
+.contact-section h3 {
+    color: #e63946;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.hero-bg {
+    background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200');
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+.contact-info {
+    text-align: right;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin: 0.4rem 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-info a {
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-section .cta-button {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* ----------------------------
+   ⚙️ الفوتر
+----------------------------- */
+footer {
+    background: #222;
+    color: white;
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #ffd166;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ----------------------------
+   📱 الاستجابة للأجهزة الصغيرة
+----------------------------- */
+@media (max-width: 768px) {
+    header img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+
+    .contact-info p {
+        justify-content: center;
+    }
+}

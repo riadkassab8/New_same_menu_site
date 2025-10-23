@@ -1,122 +1,106 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>أليكس بيتزا</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <title>أليكس بيتزا | Alex Pizza</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- خط عربي -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a2e0f1f6e7.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #fffaf4;
+      color: #2e2e2e;
+    }
+
+    .hero-bg {
+      background-image: url('https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709576394-829710c4-7fce-489a-99cd-a38ce596a9c0.webp');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  </style>
 </head>
 
-<body>
-  <div class="container">
-    <section class="hero-section">
-      <img src="https://menuoprohub.top/alex1/logo/1758024242433_793.webp" alt="Logo" class="logo" />
+<body class="text-center">
 
-      <h1>أليكس بيتزا</h1>
-      <h2>مذاق ايطالي ... بروح مصرية</h2>
-      <div class="links_toDown">
-        <a href="https://wa.me/+2001098277229" target="_blank" class="whatsapp-link">
-          <i class="fa-brands fa-whatsapp"></i>
+    <!-- 🔸 القسم الرئيسي -->
+    <section class="hero-bg relative h-screen flex flex-col justify-center items-center text-white">
+      <div class="overlay absolute inset-0"></div>
+  
+      <div class="relative z-10 flex flex-col items-center">
+        <img src="https://menuoprohub.top/alex1/logo/1758024242433_793.webp" alt="Alex Pizza Logo" class="w-24 h-24 mb-4 rounded-full shadow-lg border-2 border-white">
+        <h1 class="text-4xl font-bold mb-2">أليكس بيتزا</h1>
+        <h2 class="text-lg mb-6 opacity-90">مذاق إيطالي ... بروح مصرية 🍕</h2>
+  
+        <a href="menu.html" class="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-full text-white font-semibold text-lg shadow-lg transition">
+          عرض المنيو الإلكتروني 📋
         </a>
-        <a href="tel:+01098277229" class="whatsapp-link">
-          <i class="fa-solid fa-phone" id="callMe"></i>
+  
+        <div class="flex gap-6 mt-8 text-3xl">
+          <a href="https://wa.me/+201009105861" target="_blank" class="hover:text-green-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="tel:+201009105861" class="hover:text-yellow-300 transition"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+    </section>
+  
+    <!-- 🔸 من نحن -->
+    <section class="py-16 px-6 bg-white">
+      <h2 class="text-3xl font-bold text-red-700 mb-4">من نحن</h2>
+      <p class="max-w-2xl mx-auto text-gray-700 leading-relaxed">
+        في <span class="font-semibold text-red-600">أليكس بيتزا</span> نقدم لك أشهى المأكولات الإيطالية
+        بنكهات محلية مميزة، بأيدي أمهر الطهاة في مصر.  
+        هدفنا أن نجعل كل لقمة تجربة فريدة من نوعها!
+      </p>
+    </section>
+  
+    <!-- 🔸 معرض الصور -->
+    <section class="py-12 px-6 bg-[#fffaf4]">
+      <h2 class="text-3xl font-bold text-red-700 mb-6">صور من مطبخنا</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <img src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709566898-4a219f9f-d47c-435f-8728-6bc48bac585c.webp" class="rounded-lg shadow-md hover:scale-105 transition">
+        <img src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709569313-37dce551-0a79-4781-b557-0a4a722326fa.webp" class="rounded-lg shadow-md hover:scale-105 transition">
+        <img src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709573577-371d145d-07b9-46e5-89a4-0802d14ca804.webp" class="rounded-lg shadow-md hover:scale-105 transition">
+      </div>
+    </section>
+  
+    <!-- 🔸 قسم الطلب الآن -->
+    <section class="relative bg-red-600 text-white py-16">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-4">جاهز تطلب؟ 🍕</h2>
+        <p class="mb-6 opacity-90">اطلب الآن واستمتع بتجربة بيتزا فريدة من نوعها في مصر!</p>
+        <a href="menu.html" class="bg-white text-red-700 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition">
+          أطلب الآن
         </a>
       </div>
     </section>
-
-    <section class="slider-section">
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img
-              src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709566898-4a219f9f-d47c-435f-8728-6bc48bac585c.webp"
-              alt="Slide 1" />
-          </div>
-          <div class="swiper-slide">
-            <img
-              src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709576394-829710c4-7fce-489a-99cd-a38ce596a9c0.webp"
-              alt="Slide 2" />
-          </div>
-          <div class="swiper-slide">
-            <img
-              src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709569313-37dce551-0a79-4781-b557-0a4a722326fa.webp"
-              alt="Slide 3" />
-          </div>
-          <div class="swiper-slide">
-            <img
-              src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709573577-371d145d-07b9-46e5-89a4-0802d14ca804.webp"
-              alt="Slide 4" />
-          </div>
-          <div class="swiper-slide">
-            <img
-              src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757967541492-9418cbb3-e910-448e-9406-790074530920.webp"
-              alt="Slide 5" />
-          </div>
-        </div>
-      </div>
-      <div class="click-icon">
-        <a href="Menu.html" style="text-decoration: none"><button class="btn">
-            <img src="https://alex1.menuo.pro/_nuxt/click.C-DeAvR3.gif" alt="Click" />
-            <h1>عرض المنيو</h1>
-          </button></a>
+  
+    <!-- 🔸 تواصل معنا -->
+    <section class="py-16 px-6 bg-white">
+      <h2 class="text-3xl font-bold text-red-700 mb-6">تواصل معنا</h2>
+      <div class="max-w-xl mx-auto text-gray-700">
+        <p class="mb-2">📍 العنوان: أول عباس العقاد - مدينة نصر</p>
+        <p class="mb-2">📞 الهاتف: <a href="tel:+201009105861" class="text-red-600 hover:underline">+201009105861</a></p>
+        <p class="mb-4">📱 واتساب: <a href="https://wa.me/+201009105861" target="_blank" class="text-green-600 hover:underline">+201009105861</a></p>
+        <a href="#" class="inline-block bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition">عرض على الخريطة</a>
       </div>
     </section>
+  
+    <!-- 🔸 الفوتر -->
+    <footer class="bg-[#2e2e2e] text-white text-sm py-4">
+      © 2025 أليكس بيتزا | جميع الحقوق محفوظة 🍕
+    </footer>
 
-    <section class="order-section">
-      <div class="order-banner">
-        <img
-          src="https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/covers/1757697678172-6db0b824-3150-4b91-9dc8-abce46523e24.webp"
-          alt="Order" />
-      </div>
-      <a href="menu.html" class="order-link">
-        <div class="order-content">
-          <img src="https://alex1.menuo.pro/_nuxt/click.C-DeAvR3.gif" alt="Click" class="click-gif" />
-          <h2>أطلب الآن</h2>
-        </div>
-      </a>
-    </section>
-
-    <section class="contact-section">
-      <img src="https://menuoprohub.top/alex1/logo/1758024242433_793.webp" alt="Logo" class="logo" />
-      <h1>أليكس بيتزا</h1>
-      <h2>مذاق ايطالي ... بروح مصرية</h2>
-      <h2 class="subtitle"> افضل شيف في مصر </h2>
-
-      <hr />
-
-      <h3>تواصل معنا</h3>
-      <p class="branch">فرع 1</p>
-
-      <div class="contact-info">
-        <div class="phone">
-          <p class="label">أرقام التليفون</p>
-          <i class="fa-solid fa-phone-volume"></i>
-        </div>
-        <input type="text" class="phone-input" value="+201009105861" readonly />
-
-        <p class="label" id="whatsapp">واتس اب</p>
-        <input type="text" class="phone-input phone2" value="+201009105861" readonly />
-        <!-- <a href="https://wa.me/201009105861" target="_blank">+201009105861</a> -->
-
-        <p class="label">العنوان</p>
-        <p>اول عباس العقاد</p>
-        <a href="#" class="map-link">عرض على الخريطة</a>
-      </div>
-
-      <hr />
-    </section>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="script.js"></script>
 </body>
-
 </html>
