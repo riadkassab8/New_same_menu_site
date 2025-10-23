@@ -1190,11 +1190,6 @@ re Modal */
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .biz .logo {
-    width: 93px;
-    height: 96px;
-    border-radius: 50%;
-  }
 
   /* P
 roduct Detail Modal */
