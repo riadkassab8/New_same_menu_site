@@ -372,17 +372,72 @@ document.addEventListener("DOMContentLoaded", () => {
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
       if (CART.length === 0) {
-        alert("السلة فارغة");
+        Swal.fire({
+          icon: 'warning',
+          title: 'السلة فارغة',
+          text: 'من فضلك أضف منتجات للسلة أولاً',
+          confirmButtonText: 'حسناً',
+          confirmButtonColor: '#e74c3c'
+        });
         return;
       }
+
       const summary = CART.map((i) => `${i.qty}× ${i.title}`).join(" | ");
-      const url = `https://wa.me/${DATA.phone.replace(/\D/g, "")}?text=${encodeURIComponent(
-        "طلب: " + summary + " - الإجمالي: " + cartTotalEl.textContent
-      )}`;
-      window.open(url, "_blank");
-      CART = [];
-      saveCart();
-      if (cartDrawer) cartDrawer.classList.remove("open");
+      const total = cartTotalEl.textContent;
+
+      Swal.fire({
+        title: 'تأكيد الطلب',
+        html: `
+          <div style="text-align: right; direction: rtl;">
+            <p style="font-size: 16px; margin-bottom: 10px;">هل تريد إتمام الطلب؟</p>
+            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; margin: 15px 0;">
+              <p style="font-weight: bold; color: #e74c3c; margin-bottom: 10px;">ملخص الطلب:</p>
+              ${CART.map(item => `
+                <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: white; border-radius: 6px;">
+                  <span>${item.qty}× ${item.title}</span>
+                  <span style="color: #e74c3c; font-weight: bold;">${(item.qty * item.price).toFixed(0)} ج.م</span>
+                </div>
+              `).join('')}
+              <hr style="margin: 10px 0;">
+              <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold;">
+                <span>الإجمالي:</span>
+                <span style="color: #16a34a;">${total}</span>
+              </div>
+            </div>
+          </div>
+        `,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fab fa-whatsapp"></i> إرسال عبر واتساب',
+        cancelButtonText: 'إلغاء',
+        confirmButtonColor: '#25d366',
+        cancelButtonColor: '#6b7280',
+        reverseButtons: true,
+        customClass: {
+          popup: 'rtl-popup'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const url = `https://wa.me/201040026539?text=${encodeURIComponent(
+            "طلب: " + summary + " - الإجمالي: " + total
+          )}`;
+
+          window.open(url, "_blank");
+
+          Swal.fire({
+            icon: 'success',
+            title: 'تم إرسال الطلب!',
+            text: 'شكراً لك، سيتم التواصل معك قريباً',
+            confirmButtonText: 'حسناً',
+            confirmButtonColor: '#16a34a',
+            timer: 3000
+          });
+
+          CART = [];
+          saveCart();
+          if (cartDrawer) cartDrawer.classList.remove("open");
+        }
+      });
     });
   }
 
