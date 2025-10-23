@@ -1095,3 +1095,25 @@ function shareVia(platform) {
   // Check on load
   checkCatbarVisibility();
 })();
+
+
+// Loading Screen
+(function () {
+  const loadingScreen = document.getElementById('loadingScreen');
+
+  if (!loadingScreen) return;
+
+  // Hide loading screen when page is fully loaded
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+    }, 500); // Small delay for smooth transition
+  });
+
+  // Fallback: Hide after 3 seconds even if load event doesn't fire
+  setTimeout(() => {
+    if (!loadingScreen.classList.contains('hidden')) {
+      loadingScreen.classList.add('hidden');
+    }
+  }, 3000);
+})

@@ -609,7 +609,7 @@ Links to Down - Social Icons */
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  color: #3333;
+  color: #333;
   transition: all 0.3s;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
@@ -695,8 +695,4 @@ Links to Down - Social Icons */
     height: 120px;
   }
 
-  .contact-section .logo {
-    width: 100px;
-    height: 100px;
-  }
-}
+  .contact-s
