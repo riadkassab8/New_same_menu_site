@@ -796,7 +796,23 @@ function shareVia(platform) {
   if (platform === 'copy') {
     const link = document.getElementById("shareLink").textContent;
     navigator.clipboard.writeText(link).then(() => {
-      alert("Link copied to clipboard!");
+      Swal.fire({
+        icon: 'success',
+        title: 'تم النسخ!',
+        text: 'تم نسخ الرابط إلى الحافظة',
+        confirmButtonText: 'حسناً',
+        confirmButtonColor: '#16a34a',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    }).catch(() => {
+      Swal.fire({
+        icon: 'error',
+        title: 'خطأ',
+        text: 'فشل نسخ الرابط',
+        confirmButtonText: 'حسناً',
+        confirmButtonColor: '#e74c3c'
+      });
     });
   } else if (shareUrls[platform]) {
     window.open(shareUrls[platform], '_blank');
