@@ -1015,3 +1015,83 @@ function shareVia(platform) {
     });
   }
 })();
+
+
+// Image Lightbox for Logos
+(function () {
+  const imageLightbox = document.getElementById('imageLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const closeLightbox = document.getElementById('closeLightbox');
+
+  // Add click event to all clickable logos
+  document.querySelectorAll('.logo-clickable').forEach(logo => {
+    logo.addEventListener('click', function () {
+      const img = this.querySelector('img') || this;
+      const imgSrc = img.src || img.getAttribute('src');
+
+      if (imgSrc && lightboxImage && imageLightbox) {
+        lightboxImage.src = imgSrc;
+        imageLightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      }
+    });
+  });
+
+  // Close lightbox
+  if (closeLightbox && imageLightbox) {
+    closeLightbox.addEventListener('click', () => {
+      imageLightbox.classList.add('hidden');
+      document.body.style.overflow = ''; // Restore scrolling
+    });
+
+    // Close on background click
+    imageLightbox.addEventListener('click', (e) => {
+      if (e.target === imageLightbox) {
+        imageLightbox.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !imageLightbox.classList.contains('hidden')) {
+        imageLightbox.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+})();
+
+
+// Hide catbar when reaching footer section
+(function () {
+  const catbarWrap = document.querySelector('.catbar-wrap');
+  const contactSection = document.querySelector('.contact-section');
+
+  if (!catbarWrap || !contactSection) return;
+
+  function checkCatbarVisibility() {
+    const contactRect = contactSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Hide catbar when contact section is visible in viewport
+    if (contactRect.top < windowHeight && contactRect.bottom > 0) {
+      catbarWrap.style.opacity = '0';
+      catbarWrap.style.pointerEvents = 'none';
+      catbarWrap.style.transform = 'translateY(-20px)';
+    } else {
+      catbarWrap.style.opacity = '1';
+      catbarWrap.style.pointerEvents = 'auto';
+      catbarWrap.style.transform = 'translateY(0)';
+    }
+  }
+
+  // Add transition to catbar-wrap
+  catbarWrap.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+  // Check on scroll
+  window.addEventListener('scroll', checkCatbarVisibility);
+
+  // Check on load
+  checkCatbarVisibility();
+})();

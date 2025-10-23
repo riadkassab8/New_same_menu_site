@@ -16,9 +16,19 @@
 </head>
 
 <body>
+  <!-- Image Lightbox Modal -->
+  <div class="image-lightbox hidden" id="imageLightbox">
+    <button class="lightbox-close" id="closeLightbox">
+      <i class="fa fa-times"></i>
+    </button>
+    <div class="lightbox-content">
+      <img id="lightboxImage" src="" alt="Logo" />
+    </div>
+  </div>
+
   <div class="container">
     <section class="hero-section">
-      <img src="https://menuoprohub.top/alex1/logo/1758024242433_793.webp" alt="Logo" class="logo" />
+      <img src="images/logo2.jpg" alt="Logo" class="logo logo-clickable" />
 
       <h1>أليكس بيتزا</h1>
       <h2>مذاق ايطالي ... بروح مصرية</h2>
@@ -85,7 +95,7 @@
     </section>
 
     <section class="contact-section">
-      <img src="https://menuoprohub.top/alex1/logo/1758024242433_793.webp" alt="Logo" class="logo" />
+      <img src="images/logo2.jpg" alt="Logo" class="logo logo-clickable" />
       <h1>أليكس بيتزا</h1>
       <h2>مذاق ايطالي ... بروح مصرية</h2>
       <h2 class="subtitle"> افضل شيف في مصر </h2>
@@ -117,6 +127,51 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
+  <script>
+    // Image Lightbox for Logos
+    (function () {
+      const imageLightbox = document.getElementById('imageLightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const closeLightbox = document.getElementById('closeLightbox');
+
+      // Add click event to all clickable logos
+      document.querySelectorAll('.logo-clickable').forEach(logo => {
+        logo.addEventListener('click', function () {
+          const imgSrc = this.src || this.getAttribute('src');
+
+          if (imgSrc && lightboxImage && imageLightbox) {
+            lightboxImage.src = imgSrc;
+            imageLightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+
+      // Close lightbox
+      if (closeLightbox && imageLightbox) {
+        closeLightbox.addEventListener('click', () => {
+          imageLightbox.classList.add('hidden');
+          document.body.style.overflow = '';
+        });
+
+        // Close on background click
+        imageLightbox.addEventListener('click', (e) => {
+          if (e.target === imageLightbox) {
+            imageLightbox.classList.add('hidden');
+            document.body.style.overflow = '';
+          }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !imageLightbox.classList.contains('hidden')) {
+            imageLightbox.classList.add('hidden');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 
 </html>
