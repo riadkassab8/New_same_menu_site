@@ -1133,3 +1133,14 @@ function shareVia(platform) {
     }
   }, 3000);
 })
+
+
+// Epic Loading Screen - 3 seconds
+window.addEventListener('load', () => {
+  const loadingScreen = document.getElementById('loadingScreen');
+  if (loadingScreen) {
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+    }, 3000); // Show for 3 seconds
+  }
+});

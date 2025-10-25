@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>أليكس بيتزا | Alex Pizza</title>
+  <title>أليكس بيتزا | Restaurant Name</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,53 +12,56 @@
   <!-- خط عربي -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/a2e0f1f6e7.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #fffaf4;
-      color: #2e2e2e;
-    }
 
-    .hero-bg {
-      background-image: url('https://menuoprohub.top/alex1/fe933f39-b431-4ee5-949b-3ea284e0e539/sliders/1757709576394-829710c4-7fce-489a-99cd-a38ce596a9c0.webp');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .order-btn {
-      background-color: #ffffff;
-      color: #ff7b00;
-      font-weight: 600;
-      padding: 12px 32px;
-      border-radius: 9999px;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.5s ease;
-      box-shadow: 0 4px 10px rgba(255, 123, 0, 0.2);
-      letter-spacing: 0;
-      border: 2px solid transparent;
-    }
-
-    /* Hover effect (AFTER) */
-    .order-btn:hover {
-      background-color: #ff7b00;
-      color: #fff;
-      letter-spacing: 3px;
-
-      box-shadow: 0 8px 20px rgba(255, 123, 0, 0.4);
-      border: 2px solid #ff7b00;
-    }
-  </style>
 </head>
 
 <body class="text-center">
+  <!-- Epic Loading Screen -->
+  <div class="epic-loading-screen" id="loadingScreen">
+    <div class="loading-background">
+      <div class="animated-gradient"></div>
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+    </div>
+    <div class="loading-content">
+      <div class="logo-container">
+        <div class="logo-glow"></div>
+        <img src="images/Wikipedia-logo-v2.svg.png" alt="Logo" class="loading-logo" />
+        <div class="logo-ring"></div>
+        <div class="logo-ring-2"></div>
+      </div>
+      <div class="loading-text">
+        <h1 class="brand-name">اسم المطعم</h1>
+        <p class="tagline">مذاق إيطالي... بروح مصرية</p>
+      </div>
+      <div class="spinner-container">
+        <div class="spinner">
+          <div class="spinner-blade"></div>
+          <div class="spinner-blade"></div>
+          <div class="spinner-blade"></div>
+          <div class="spinner-blade"></div>
+          <div class="spinner-blade"></div>
+          <div class="spinner-blade"></div>
+        </div>
+      </div>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <p class="loading-message">مرحباً بك...</p>
+    </div>
+  </div>
 
   <!-- 🔸 القسم الرئيسي -->
   <section class="hero-bg relative h-screen flex flex-col justify-center items-center text-white">
@@ -141,6 +144,13 @@
       ease: "sine.inOut",
       yoyo: true,
       repeat: -1
+    });
+
+    // Epic Loading Screen - 3 seconds
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loadingScreen').classList.add('hidden');
+      }, 3000); // Show for 3 seconds
     });
   </script>
 </body>
